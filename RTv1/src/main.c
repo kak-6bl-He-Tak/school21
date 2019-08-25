@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/01 09:23:09 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/25 17:06:18 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int main(int argc, char **argv)
 {
 	t_rt	rt;
 
+	ft_bzero((void *)&rt, sizeof(rt));
 	if (argc == 2)
 	{
 		if (!(pars_scene(argv[1], &rt)))
