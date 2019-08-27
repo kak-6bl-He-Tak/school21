@@ -6,50 +6,11 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/03 19:00:14 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/27 20:03:55 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-static void	ft_koroche(t_ray *ray, float *t, t_obj *obj)
-{
-	if (t[0] > 1 && t[0] < ray->t)
-	{
-		ray->t = t[0];
-		ray->clr = obj->clr;
-		ray->obj = obj;
-	}
-	if (t[1] > 1 && t[1] < ray->t)
-	{
-		ray->t = t[1];
-		ray->clr = obj->clr;
-		ray->obj = obj;
-	}
-}
-
-void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
-{
-	float oc[3];
-	float k[3];
-	float dsct;
-	float t[2];
-
-	oc[0] = cam->xyz[0] - obj->xyz[0];
-	oc[1] = cam->xyz[1] - obj->xyz[1];
-	oc[2] = cam->xyz[2] - obj->xyz[2];
-	k[0] = ray->d[0] * ray->d[0] + ray->d[1] * ray->d[1] +
-		ray->d[2] * ray->d[2];
-	k[1] = 2 * (oc[0] * ray->d[0] + oc[1] * ray->d[1] + oc[2] * ray->d[2]);
-	k[2] = (oc[0] * oc[0] + oc[1] * oc[1] + oc[2] * oc[2]) - obj->r * obj->r;
-	dsct = k[1] * k[1] - 4 * k[0] * k[2];
-	if (dsct >= 0)
-	{
-		t[0] = (-k[1] + sqrt(dsct)) / (2 * k[0]);
-		t[1] = (-k[1] - sqrt(dsct)) / (2 * k[0]);
-		ft_koroche(ray, t, obj);
-	}
-}
 
 void		object_patrol(t_rt *rt, t_ray *ray)
 {
