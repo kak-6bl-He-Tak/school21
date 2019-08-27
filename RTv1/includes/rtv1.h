@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/27 18:05:02 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:10:13 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct			s_obj
 {
 	char				type;
 	void				*shape;
-	//float				xyz[3];
-	//float				r;
+	float				xyz[3];
+	float				r;
 	int					clr;
 
 	struct s_obj		*next;
