@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/03 16:53:20 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/27 18:05:02 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "libft.h"
 # include "mlx.h"
+
+# include "shapes.h"
+
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
@@ -29,8 +32,9 @@
 typedef struct			s_obj
 {
 	char				type;
-	float				xyz[3];
-	float				r;
+	void				*shape;
+	//float				xyz[3];
+	//float				r;
 	int					clr;
 
 	struct s_obj		*next;
