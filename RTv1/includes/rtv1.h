@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/27 18:10:13 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/27 20:34:24 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,15 @@
 # define BUFF_SIZE 111
 # define BG_CLR 0xE0FFFF
 
+# define SUCCESS 0
+# define FAIL 1
+
 typedef struct			s_obj
 {
 	char				type;
 	void				*shape;
-	float				xyz[3];
-	float				r;
+	// float				xyz[3];
+	// float				r;
 	int					clr;
 
 	struct s_obj		*next;
@@ -62,10 +65,14 @@ typedef struct			s_ray
 int						ft_exit(t_rt *rt);
 int						pars_scene(char *str, t_rt *rt);
 int						get_next_line(const int fd, char **line);
+int						roots_quadratic_equation(float a, float b, float c,
+												float roots[2]);
 
 float					ft_atof(const char *str);
 float					ft_scan_digit(char **str);
 float					diffuse_reflection(t_rt *rt, t_ray *ray);
+float					len_vector(float vector[3]);
+float					dot_product(float first_point[3], float second_point[3]);
 
 t_obj					*new_obj(t_obj **obj);
 
