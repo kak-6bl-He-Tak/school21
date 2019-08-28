@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/25 17:06:18 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/28 21:50:39 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	start_mlx(t_rt *rt)
 	}
 }
 
-static int				press_key(int key, t_rt *rt)
-{
-	if (key == 53)
-		ft_exit(rt);
-	return (0);
-}
+// static int				press_key(int key, t_rt *rt)
+// {
+// 	if (key == 53)
+// 		ft_exit(rt);
+// 	return (0);
+// }
 
 
 int main(int argc, char **argv)
@@ -46,18 +46,19 @@ int main(int argc, char **argv)
 		if (!(pars_scene(argv[1], &rt)))
 			ft_exit(&rt);
 	}
-	else
-	{
-		ft_putendl("Use: ./RTv1 [scene file]");
-		ft_exit(&rt);
-	}
-	start_mlx(&rt);
+	print_all(rt.obj, rt.light);
+	// else
+	// {
+	// 	ft_putendl("Use: ./RTv1 [scene file]");
+	// 	ft_exit(&rt);
+	// }
+	// start_mlx(&rt);
 
-	trace_ray(&rt);
+	// trace_ray(&rt);
 
 
-	mlx_hook(rt.win_ptr, 2, 0, press_key, &rt);
-	mlx_hook(rt.win_ptr, 17, 0, ft_exit, (void *)&rt);
-	mlx_loop(rt.mlx_ptr);
+	// mlx_hook(rt.win_ptr, 2, 0, press_key, &rt);
+	// mlx_hook(rt.win_ptr, 17, 0, ft_exit, (void *)&rt);
+	// mlx_loop(rt.mlx_ptr);
 	return(0);
 }

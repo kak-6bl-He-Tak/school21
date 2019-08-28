@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 09:44:11 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/27 14:26:58 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/28 22:10:07 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ float	ft_atof(const char *str)
 
 	float_hvost = 0;
 	res = (float)ft_atoi(str);
-	while (*str == '\t' || *str == ' ')
+	while (*str == '\t' || *str == ' ' || *str == '-')
 		str++;
 	while (ft_isdigit(*str))
 		str++;
@@ -33,5 +33,8 @@ float	ft_atof(const char *str)
 			hvost /= 10;
 		}
 	}
+	if (res < 0)
+		return (res - float_hvost / 10);
 	return (res + float_hvost / 10);
+
 }

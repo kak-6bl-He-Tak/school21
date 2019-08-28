@@ -17,7 +17,8 @@
 # define SPHERE 12
 # define CYLINDER 13
 # define CONE 14
-# define CAMERA 0
+# define LIGHT 69
+# define CAMERA 100
 
 typedef struct			s_plane
 {
@@ -42,7 +43,16 @@ typedef struct			s_cone
 {
 	float				cone_vertex[3];
 	float				cone_axis[3];
-	float				cone_angle_tangent;
+	float				cone_angle;
 }						t_cone;
+
+typedef struct			s_light
+{
+	char				type;
+	float				intensive;
+	float				center[3];
+	float				vector[3];
+}						t_light;
+
 
 #endif

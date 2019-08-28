@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/27 20:34:24 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/28 21:48:31 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct			s_obj
 {
 	char				type;
 	void				*shape;
-	// float				xyz[3];
-	// float				r;
+	float				xyz[3];
+	float				r;
 	int					clr;
 
 	struct s_obj		*next;
@@ -78,5 +78,7 @@ t_obj					*new_obj(t_obj **obj);
 
 void					trace_ray(t_rt *rt);
 void					dell_all_obj(t_obj **obj);
+void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
+void					print_all(t_obj *obj, t_obj *light);
 
 #endif
