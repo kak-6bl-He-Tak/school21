@@ -6,13 +6,13 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:03:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/27 20:13:46 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/29 13:34:06 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	ft_koroche(t_ray *ray, float roots[2], t_obj *obj)
+static void		ft_koroche(t_ray *ray, float roots[2], t_obj *obj)
 {
 	if (roots[0] > 1 && roots[0] < ray->t)
 	{
