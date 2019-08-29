@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 14:14:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 20:54:09 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:12:55 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void				clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray)
 								coefficient_quadratic_equation[2],
 								roots) == FAIL)
 		return ;
-	ft_koroche(ray, roots, current_obj);
+	nearest_object(ray, roots, current_obj);
 }

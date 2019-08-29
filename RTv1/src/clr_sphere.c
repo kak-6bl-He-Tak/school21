@@ -6,27 +6,13 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:03:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 20:37:12 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:00:16 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		ft_koroche(t_ray *ray, float roots[2], t_obj *obj)
-{
-	if (roots[0] > 1 && roots[0] < ray->t)
-	{
-		ray->t = roots[0];
-		ray->clr = obj->clr;
-		ray->obj = obj;
-	}
-	if (roots[1] > 1 && roots[1] < ray->t)
-	{
-		ray->t = roots[1];
-		ray->clr = obj->clr;
-		ray->obj = obj;
-	}
-}
+
 
 void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
 {
@@ -50,5 +36,5 @@ void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
 		sphere->sphere_radius * sphere->sphere_radius;
 	if (roots_quadratic_equation(k[0], k[1], k[2], roots) == FAIL)
 		return ;
-	ft_koroche(ray, roots, obj);
+	nearest_object(ray, roots, obj);
 }

@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/08/29 20:46:32 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/08/29 21:02:47 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,24 +15,25 @@ NAME = RTv1
 SRC_DIR=./src
 OBJ_DIR=./objects
 C_FILES= \
-			clr_plane.c\
-			clr_sphere.c\
-			dell_all_obj.c\
-			diffuse_reflection.c\
-			dot_product.c\
-			ft_atof.c\
-			ft_exit.c\
-			ft_scan_digit.c\
-			get_next_line.c\
-			len_vector.c\
 			main.c\
 			new_obj.c\
-			pars_scene.c\
-			roots_quadratic_equation.c\
+			ft_exit.c\
+			ft_atof.c\
 			trace_ray.c\
 			print_all.c\
+			clr_plane.c\
+			clr_sphere.c\
+			pars_scene.c\
+			len_vector.c\
+			dot_product.c\
 			clr_cylinder.c\
-			operation_with_point.c
+			dell_all_obj.c\
+			ft_scan_digit.c\
+			get_next_line.c\
+			nearest_object.c\
+			diffuse_reflection.c\
+			operation_with_point.c\
+			roots_quadratic_equation.c\
 
 O_FILES = $(C_FILES:.c=.o)
 

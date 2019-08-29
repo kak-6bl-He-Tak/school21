@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vmcclure <vmcclure@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 20:54:55 by vmcclure          #+#    #+#             */
-/*   Updated: 2019/04/08 13:56:41 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:00:19 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void		zlivka(t_mlx *mlx, int x, int y, int y1)
 			mlx->img_data[i + 2] = (char)0;
 		}
 		if (mlx->map[y][x] == 's')
-			ft_koroche(mlx, i);
+			nearest_object(mlx, i);
 		x1++;
 	}
 }
