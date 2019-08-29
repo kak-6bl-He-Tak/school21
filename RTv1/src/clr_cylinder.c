@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   clr_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 14:14:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 20:31:45 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:45:21 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
- 
+
 /*
  * Solution of пересечения прямой and cylinder
  * сводится к solution of quadratic equation
@@ -26,7 +26,6 @@
  * R - radius of cylinder
  * C - point on axis of cylinder
 */
-coefficient_quadratic_equation[0]
 
 void				clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray)
 {
@@ -36,19 +35,20 @@ void				clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray)
 	float			o_c[3];
 	float			tmp;
 
-	cylinder = current_obj;
-	subtraction_point(cam->shapes, cylinder->cylinder_strart, o_c);
+	cylinder = current_obj->shape;
+	subtraction_point((float *)cam->shape, cylinder->cylinder_start, o_c);
 
 	tmp = dot_product(ray->d, cylinder->cylinder_axis);
 	coefficient_quadratic_equation[0] = dot_product(ray->d, ray->d) - tmp * tmp;
-	
+
 	tmp = dot_product(o_c, cylinder->cylinder_axis) *
 						dot_product(ray->d, cylinder->cylinder_axis);
 	coefficient_quadratic_equation[1] = 2 * (dot_product(ray->d, o_c) - tmp);
 
 	tmp = dot_product(o_c, cylinder->cylinder_axis);
 	coefficient_quadratic_equation[2] =
-		dot_product(o_c, o_c) - (tmp * tmp + r * r);
+		dot_product(o_c, o_c) -
+			(tmp * tmp + cylinder->cylinder_radius * cylinder->cylinder_radius);
 	if (roots_quadratic_equation(coefficient_quadratic_equation[0],
 								coefficient_quadratic_equation[1],
 								coefficient_quadratic_equation[2],

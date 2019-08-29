@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 20:01:37 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:39:07 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void		object_patrol(t_rt *rt, t_ray *ray)
 			clr_sphere(cam, obj, ray);
 		else if (obj->type == PLANE)
 			clr_plane(cam, obj, ray);
+		else if (obj->type == CYLINDER)
+			clr_cylinder(cam, obj, ray);
+
 	}
 }
 

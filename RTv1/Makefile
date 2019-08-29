@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/08/28 21:48:43 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/08/29 20:46:32 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ C_FILES= \
 			pars_scene.c\
 			roots_quadratic_equation.c\
 			trace_ray.c\
-			print_all.c
+			print_all.c\
+			clr_cylinder.c\
+			operation_with_point.c
 
 O_FILES = $(C_FILES:.c=.o)
 
