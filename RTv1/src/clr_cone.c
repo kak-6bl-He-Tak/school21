@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   clr_cone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 20:52:10 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 21:11:38 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:18:22 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rtv1.h"
 /*
 **
 */
@@ -22,8 +23,8 @@ void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
 	float			o_c[3];
 	float			tmp;
 
-	cone - current_obj->shape;
-	subtraction_point((float *)cam->shape, cone->cone_start, o_c);
+	cone = current_obj->shape;
+	subtraction_point((float *)cam->shape, cone->cone_vertex, o_c);
 
 	tmp = dot_product(ray->d, cone->cone_axis);
 	coefficient_quadratic_equation[0] = dot_product(ray->d, ray->d) -
@@ -44,5 +45,4 @@ void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
 								roots) == FAIL)
 		return ;
 	nearest_object(ray, roots, current_obj);
-}
 }

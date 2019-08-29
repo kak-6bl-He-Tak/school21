@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/08/29 21:02:47 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/08/29 21:16:48 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ C_FILES= \
 			new_obj.c\
 			ft_exit.c\
 			ft_atof.c\
+			clr_cone.c\
 			trace_ray.c\
 			print_all.c\
 			clr_plane.c\

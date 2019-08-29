@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 20:25:07 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:20:23 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ int				set_cone(t_obj **obj, char *gnl)
 	cone->cone_axis[1] = axis[1] / len_vect;
 	cone->cone_axis[2] = axis[2] / len_vect;
 	cone->cone_angle = ft_scan_digit(&save);
+	cone->cone_angle = tan((cone->cone_angle / 2) * M_PI / 180);
 	obj[0]->clr = ft_scan_digit(&save);
 	return (1);
 }

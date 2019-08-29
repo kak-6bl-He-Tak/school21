@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 20:59:47 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 21:16:22 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void					trace_ray(t_rt *rt);
 void					dell_all_obj(t_obj **obj);
 void					print_all(t_obj *obj, t_obj *light);
 void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
+void					clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray);
 void					nearest_object(t_ray *ray, float roots[2], t_obj *obj);
 void					clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray);
 void					clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray);
