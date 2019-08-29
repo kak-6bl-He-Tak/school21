@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 14:59:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/07/31 11:46:51 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:14:38 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	dell_all_obj(t_obj **obj)
 		while ((*obj)->next)
 		{
 			save = (*obj)->next;
+			if (obj[0]->shape != 0)
+				ft_memdel((void **)&obj[0]->shape);
 			ft_memdel(((void **)&obj[0]));
 			obj[0] = save;
 		}
