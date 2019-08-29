@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/27 20:03:55 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:01:37 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void		object_patrol(t_rt *rt, t_ray *ray)
 	while (obj->next)
 	{
 		obj = obj->next;
-		if (obj->type == 1)
+		if (obj->type == SPHERE)
 			clr_sphere(cam, obj, ray);
+		else if (obj->type == PLANE)
+			clr_plane(cam, obj, ray);
 	}
 }
 
@@ -45,7 +47,7 @@ void		trace_ray(t_rt *rt)
 	int		x;
 	int		y;
 	t_ray	ray;
-	float	i;
+//	float	i;
 
 	y = -1;
 	while (++y < H)
@@ -62,8 +64,8 @@ void		trace_ray(t_rt *rt)
 			object_patrol(rt, &ray);
 			if (ray.obj)
 			{
-				i = diffuse_reflection(rt, &ray);
-				ray.clr = colr_mod(ray.clr, i);
+				//i = diffuse_reflection(rt, &ray);
+				//ray.clr = colr_mod(ray.clr, i);
 			}
 			rt->img_data[y * W + x] = ray.clr;
 		}

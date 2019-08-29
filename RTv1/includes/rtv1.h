@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/28 21:48:31 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:02:15 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define W 1300
 # define H 1300
 # define BUFF_SIZE 111
-# define BG_CLR 0xE0FFFF
+# define BG_CLR 0
 
 # define SUCCESS 0
 # define FAIL 1
@@ -78,7 +78,8 @@ t_obj					*new_obj(t_obj **obj);
 
 void					trace_ray(t_rt *rt);
 void					dell_all_obj(t_obj **obj);
-void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
 void					print_all(t_obj *obj, t_obj *light);
+void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
+void					clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray);
 
 #endif
