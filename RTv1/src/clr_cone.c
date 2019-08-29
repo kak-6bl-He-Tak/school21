@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clr_cylinder.c                                     :+:      :+:    :+:   */
+/*   clr_cone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/29 14:14:46 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 20:54:09 by udraugr-         ###   ########.fr       */
+/*   Created: 2019/08/29 20:52:10 by udraugr-          #+#    #+#             */
+/*   Updated: 2019/08/29 21:05:05 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
-
 /*
- * Solution of пересечения прямой and cylinder
- * сводится к solution of quadratic equation
- * with коэффицантами
- * a = < D ; D > - < D ; V > * < D ; V >
- * b = 2 * ( < D ; O - C > - < V ; O - C > * < D ; V > )
- * c = < O - C ; O - C > - < O - C ; V > * < O - C ; V > - R * R
- * where :
- * D - vector of view
- * V - vector of cylinder's axis (len(V) == 1)
- * O - point of view
- * R - radius of cylinder
- * C - point on axis of cylinder
+**
 */
 
-void				clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray)
+void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
 {
-	t_cylinder		*cylinder;
+	t_cone			*cone;
 	float			coefficient_quadratic_equation[3];
 	float			roots[2];
 	float			o_c[3];
 	float			tmp;
 
-	cylinder = current_obj->shape;
+	cone - current_obj->shape;
 	subtraction_point((float *)cam->shape, cylinder->cylinder_start, o_c);
 
 	tmp = dot_product(ray->d, cylinder->cylinder_axis);
@@ -55,4 +42,5 @@ void				clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray)
 								roots) == FAIL)
 		return ;
 	ft_koroche(ray, roots, current_obj);
+}
 }
