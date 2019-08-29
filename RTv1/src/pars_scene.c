@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/28 22:17:13 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:25:07 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int			set_plane(t_obj **obj, char *gnl)
 	plane->plane_normal[0] = normal[0] / len_normal;
 	plane->plane_normal[1] = normal[1] / len_normal;
 	plane->plane_normal[2] = normal[2] / len_normal;
+	printf("\n\n%f, %f, %f, %f\n", len_normal, plane->plane_normal[0],
+			 plane->plane_normal[1], plane->plane_normal[2]);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);
 }

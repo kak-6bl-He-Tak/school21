@@ -31,7 +31,7 @@ void print_all(t_obj *obj, t_obj *light)
 			plane = (t_plane *)obj->shape;
 			printf("plane : %f,%f,%f : %f,%f,%f : %d\n",
 				plane->plane_dot[0], plane->plane_dot[1], plane->plane_dot[2],
-					plane->plane_normal[0], plane->plane_dot[1], plane->plane_dot[2], obj->clr);
+					plane->plane_normal[0], plane->plane_normal[1], plane->plane_normal[2], obj->clr);
 		}
 		if (obj->type == SPHERE)
 		{

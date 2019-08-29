@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 19:43:17 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/29 20:17:21 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int main(int argc, char **argv)
 		if (!(pars_scene(argv[1], &rt)))
 		{
 			ft_exit(&rt);
-			print_all(rt.obj, rt.light);
 		}
 	}
 
@@ -56,6 +55,7 @@ int main(int argc, char **argv)
 	ft_exit(&rt);
 	}
 	start_mlx(&rt);
+	print_all(rt.obj, rt.light);
 
 	trace_ray(&rt);
 
