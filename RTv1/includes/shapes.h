@@ -6,7 +6,7 @@
 /*   By: udraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 14:55:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 13:52:35 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:28:01 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ typedef struct			s_light
 	float				center[3];
 	float				vector[3];
 }						t_light;
-
 
 #endif

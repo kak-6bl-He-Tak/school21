@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 21:16:22 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:39:24 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,38 @@ typedef struct			s_ray
 int						ft_exit(t_rt *rt);
 int						pars_scene(char *str, t_rt *rt);
 int						get_next_line(const int fd, char **line);
-int						roots_quadratic_equation(float a, float b, float c,
-												float roots[2]);
 
 float					ft_atof(const char *str);
 float					ft_scan_digit(char **str);
 float					diffuse_reflection(t_rt *rt, t_ray *ray);
-float					len_vector(float vector[3]);
-float					dot_product(float first_point[3], float second_point[3]);
 
 t_obj					*new_obj(t_obj **obj);
 
 void					trace_ray(t_rt *rt);
 void					dell_all_obj(t_obj **obj);
 void					print_all(t_obj *obj, t_obj *light);
+
 void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
 void					clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray);
-void					nearest_object(t_ray *ray, float roots[2], t_obj *obj);
 void					clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray);
-void					clr_cylinder(t_obj *cam, t_obj *current_obj, t_ray *ray);
+void					clr_cylinder(t_obj *cam, t_obj *current_obj,
+																t_ray *ray);
 
+void					nearest_object(t_ray *ray, float root, t_obj *obj);
+void					nearest_objects(t_ray *ray, float roots[2], t_obj *obj);
+
+int						roots_quadratic_equation(float a, float b, float c,
+												float roots[2]);
+float					len_vector(float vector[3]);
+float					dot_product(float first_point[3],
+									float second_point[3]);
 void					multiplication_point(float first_point[3], float k,
+											float destination[3]);
+void					addition_point(float first_point[3],
+									float second_point[3],
 									float destination[3]);
-void					addition_point(float first_point[3], float second_point[3],
-									float destination[3]);
-void					subtraction_point(float first_point[3], float second_point[3],
-									float destination[3]);
-
+void					subtraction_point(float first_point[3],
+										float second_point[3],
+										float destination[3]);
 
 #endif

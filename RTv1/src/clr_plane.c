@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:13:55 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/29 19:39:39 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:43:00 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,15 @@ void			clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray)
 {
 	float		root;
 	float		delitel;
-	float		tmp[3];
+	float		o_c[3];
 	t_plane		*plane;
-	float		*cam_xyz;
 
-	cam_xyz = (float *)cam->shape;
 	plane = (t_plane *)current_obj->shape;
 	delitel = dot_product(ray->d, plane->plane_normal);
 	if (delitel == 0)
 		return ;
-	tmp[0] = cam_xyz[0] - plane->plane_dot[0];
-	tmp[1] = cam_xyz[1] - plane->plane_dot[1];
-	tmp[2] = cam_xyz[2] - plane->plane_dot[2];
-	root = -1.0 * dot_product(tmp, plane->plane_normal);
+	subtraction_point((float *)cam->shape, plane->plane_dot, o_c);
+	root = -1.0 * dot_product(o_c, plane->plane_normal);
 	root /= delitel;
-	if (root > 1.0 && root < ray->t)
-	{
-		ray->t = root;
-		ray->clr = current_obj->clr;
-		ray->obj = current_obj;
-	}
+	nearest_object(ray, root, current_obj);
 }
