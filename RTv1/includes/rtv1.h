@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/30 19:26:12 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/30 20:18:04 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ void					clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray);
 void					clr_cylinder(t_obj *cam, t_obj *current_obj,
 																t_ray *ray);
 
-void					nearest_object(t_ray *ray, float root, t_obj *obj);
-void					nearest_objects(t_ray *ray, float roots[2], t_obj *obj);
+void					normal_intersection_dot(t_ray *ray, t_obj *cam);
+void					nearest_object(t_ray *ray, float root, t_obj *obj, t_obj *cam);
+void					nearest_objects(t_ray *ray, float roots[2], t_obj *obj, t_obj *cam);
 
 int						roots_quadratic_equation(float a, float b, float c,
 												float roots[2]);

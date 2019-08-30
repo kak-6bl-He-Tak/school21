@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 20:52:10 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/30 14:40:01 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/30 20:17:38 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,5 @@ void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
 								coefficient_quadratic_equation[2],
 								roots) == FAIL)
 		return ;
-	nearest_objects(ray, roots, current_obj);
+	nearest_objects(ray, roots, current_obj, cam);
 }

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:03:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/30 14:43:41 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/30 20:18:34 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** reduces to solution the quadratic equation
 ** with coefficient
 ** a = < D ; D >
-** b = 2 * < O - C ; D > 
+** b = 2 * < O - C ; D >
 ** c = < O - C ; O - C > - r * r
 ** where:
 ** C - sphere's centre
@@ -44,5 +44,5 @@ void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
 								coefficient_quadratic_equation[2],
 								roots) == FAIL)
 		return ;
-	nearest_objects(ray, roots, obj);
+	nearest_objects(ray, roots, obj, cam);
 }

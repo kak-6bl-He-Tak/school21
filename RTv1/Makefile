@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/08/29 21:16:48 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/08/30 20:16:03 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ C_FILES= \
 			nearest_object.c\
 			diffuse_reflection.c\
 			operation_with_point.c\
+			normal_intersection_dot.c\
 			roots_quadratic_equation.c\
 
 O_FILES = $(C_FILES:.c=.o)
