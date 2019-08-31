@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:03:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/30 20:18:34 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/31 10:45:59 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
 	t_sphere	*sphere;
 
 	sphere = (t_sphere *)obj->shape;
-	subtraction_point((float *)cam->shape, sphere->sphere_center, o_c);
+	subtraction_point((float *)cam->shape, sphere->center, o_c);
 	coefficient_quadratic_equation[0] = dot_product(ray->d, ray->d);
 	coefficient_quadratic_equation[1] = 2 * dot_product(o_c, ray->d);
 	coefficient_quadratic_equation[2] = dot_product(o_c, o_c) -
-		sphere->sphere_radius * sphere->sphere_radius;
+		sphere->radius * sphere->radius;
 	if (roots_quadratic_equation(coefficient_quadratic_equation[0],
 								coefficient_quadratic_equation[1],
 								coefficient_quadratic_equation[2],

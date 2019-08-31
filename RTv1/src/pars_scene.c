@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 21:20:23 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/31 10:57:07 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ int			set_sphere(t_obj **obj, char *gnl)
 		return (0);
 	sphere = (t_sphere *)obj[0]->shape;
 	save = &gnl[11];
-	sphere->sphere_center[0] = ft_scan_digit(&save);
-	sphere->sphere_center[1] = ft_scan_digit(&save);
-	sphere->sphere_center[2] = ft_scan_digit(&save);
-	sphere->sphere_radius = ft_scan_digit(&save);
+	sphere->center[0] = ft_scan_digit(&save);
+	sphere->center[1] = ft_scan_digit(&save);
+	sphere->center[2] = ft_scan_digit(&save);
+	sphere->radius = ft_scan_digit(&save);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);
 }
@@ -73,18 +73,18 @@ int			set_plane(t_obj **obj, char *gnl)
 		return (0);
 	save = &gnl[11];
 	plane = (t_plane *)obj[0]->shape;
-	plane->plane_dot[0] = ft_scan_digit(&save);
-	plane->plane_dot[1] = ft_scan_digit(&save);
-	plane->plane_dot[2] = ft_scan_digit(&save);
+	plane->dot[0] = ft_scan_digit(&save);
+	plane->dot[1] = ft_scan_digit(&save);
+	plane->dot[2] = ft_scan_digit(&save);
 	normal[0] = ft_scan_digit(&save);
 	normal[1] = ft_scan_digit(&save);
 	normal[2] = ft_scan_digit(&save);
 	len_normal = len_vector(normal);
-	plane->plane_normal[0] = normal[0] / len_normal;
-	plane->plane_normal[1] = normal[1] / len_normal;
-	plane->plane_normal[2] = normal[2] / len_normal;
-	printf("\n\n%f, %f, %f, %f\n", len_normal, plane->plane_normal[0],
-			 plane->plane_normal[1], plane->plane_normal[2]);
+	plane->normal[0] = normal[0] / len_normal;
+	plane->normal[1] = normal[1] / len_normal;
+	plane->normal[2] = normal[2] / len_normal;
+	printf("\n\n%f, %f, %f, %f\n", len_normal, plane->normal[0],
+			 plane->normal[1], plane->normal[2]);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);
 }
@@ -101,17 +101,17 @@ int				set_cylinder(t_obj **obj, char *gnl)
 		return (0);
 	cylinder = (t_cylinder *)obj[0]->shape;
 	save = &gnl[11];
-	cylinder->cylinder_start[0] = ft_scan_digit(&save);
-	cylinder->cylinder_start[1] = ft_scan_digit(&save);
-	cylinder->cylinder_start[2] = ft_scan_digit(&save);
+	cylinder->start[0] = ft_scan_digit(&save);
+	cylinder->start[1] = ft_scan_digit(&save);
+	cylinder->start[2] = ft_scan_digit(&save);
 	axis[0] = ft_scan_digit(&save);
 	axis[1] = ft_scan_digit(&save);
 	axis[2] = ft_scan_digit(&save);
 	len_vect = len_vector(axis);
-	cylinder->cylinder_axis[0] = axis[0] / len_vect;
-	cylinder->cylinder_axis[1] = axis[1] / len_vect;
-	cylinder->cylinder_axis[2] = axis[2] / len_vect;
-	cylinder->cylinder_radius = ft_scan_digit(&save);
+	cylinder->axis[0] = axis[0] / len_vect;
+	cylinder->axis[1] = axis[1] / len_vect;
+	cylinder->axis[2] = axis[2] / len_vect;
+	cylinder->radius = ft_scan_digit(&save);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);
 }
@@ -128,18 +128,18 @@ int				set_cone(t_obj **obj, char *gnl)
 		return (0);
 	cone = (t_cone *)obj[0]->shape;
 	save = &gnl[11];
-	cone->cone_vertex[0] = ft_scan_digit(&save);
-	cone->cone_vertex[1] = ft_scan_digit(&save);
-	cone->cone_vertex[2] = ft_scan_digit(&save);
+	cone->vertex[0] = ft_scan_digit(&save);
+	cone->vertex[1] = ft_scan_digit(&save);
+	cone->vertex[2] = ft_scan_digit(&save);
 	axis[0] = ft_scan_digit(&save);
 	axis[1] = ft_scan_digit(&save);
 	axis[2] = ft_scan_digit(&save);
 	len_vect = len_vector(axis);
-	cone->cone_axis[0] = axis[0] / len_vect;
-	cone->cone_axis[1] = axis[1] / len_vect;
-	cone->cone_axis[2] = axis[2] / len_vect;
-	cone->cone_angle = ft_scan_digit(&save);
-	cone->cone_angle = tan((cone->cone_angle / 2) * M_PI / 180);
+	cone->axis[0] = axis[0] / len_vect;
+	cone->axis[1] = axis[1] / len_vect;
+	cone->axis[2] = axis[2] / len_vect;
+	cone->angle = ft_scan_digit(&save);
+	cone->angle = tan((cone->angle / 2) * M_PI / 180);
 	obj[0]->clr = ft_scan_digit(&save);
 	return (1);
 }

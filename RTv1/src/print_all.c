@@ -8,37 +8,37 @@ void print_all(t_obj *obj, t_obj *light)
 	t_plane	*plane;
 	t_sphere	*sphere;
 
-	while(obj->next)
+	while (obj->next)
 	{
 		if (obj->type == CONE)
 		{
 			cone = (t_cone *)obj->shape;
 			printf("cone : %f,%f,%f : %f,%f,%f : %f : %d\n",
-				cone->cone_vertex[0], cone->cone_vertex[1], cone->cone_vertex[0],
-					cone->cone_axis[0], cone->cone_axis[1], cone->cone_axis[2],
-						cone->cone_angle, obj->clr);
+				cone->vertex[0], cone->vertex[1], cone->vertex[0],
+					cone->axis[0], cone->axis[1], cone->axis[2],
+						cone->angle, obj->clr);
 		}
 		if (obj->type == CYLINDER)
 		{
 			cylinder = (t_cylinder *)obj->shape;
 			printf("cylinder : %f,%f,%f : %f,%f,%f : %f : %d\n",
-				cylinder->cylinder_start[0],cylinder->cylinder_start[1], cylinder->cylinder_start[2],
-					cylinder->cylinder_axis[0], cylinder->cylinder_axis[1], cylinder->cylinder_axis[2],
-					cylinder->cylinder_radius, obj->clr);
+				cylinder->start[0],cylinder->start[1], cylinder->start[2],
+					cylinder->axis[0], cylinder->axis[1], cylinder->axis[2],
+					cylinder->radius, obj->clr);
 		}
 		if (obj->type == PLANE)
 		{
 			plane = (t_plane *)obj->shape;
 			printf("plane : %f,%f,%f : %f,%f,%f : %d\n",
-				plane->plane_dot[0], plane->plane_dot[1], plane->plane_dot[2],
-					plane->plane_normal[0], plane->plane_normal[1], plane->plane_normal[2], obj->clr);
+				plane->dot[0], plane->dot[1], plane->dot[2],
+					plane->normal[0], plane->normal[1], plane->normal[2], obj->clr);
 		}
 		if (obj->type == SPHERE)
 		{
 			sphere = (t_sphere *)obj->shape;
 			printf("sphere : %f,%f,%f : %f : %d\n",
-				sphere->sphere_center[0], sphere->sphere_center[1], sphere->sphere_center[2],
-					sphere->sphere_radius, obj->clr);
+				sphere->center[0], sphere->center[1], sphere->center[2],
+					sphere->radius, obj->clr);
 		}
 		obj = obj->next;
 	}
@@ -46,33 +46,33 @@ void print_all(t_obj *obj, t_obj *light)
 	{
 		cone = (t_cone *)obj->shape;
 		printf("cone : %f,%f,%f : %f,%f,%f : %f : %d\n",
-			cone->cone_vertex[0], cone->cone_vertex[1], cone->cone_vertex[0],
-				cone->cone_axis[0], cone->cone_axis[1], cone->cone_axis[2],
-					cone->cone_angle, obj->clr);
+			cone->vertex[0], cone->vertex[1], cone->vertex[0],
+				cone->axis[0], cone->axis[1], cone->axis[2],
+					cone->angle, obj->clr);
 	}
 	if (obj->type == CYLINDER)
 	{
 		cylinder = (t_cylinder *)obj->shape;
 		printf("cylinder : %f,%f,%f : %f,%f,%f : %f : %d\n",
-			cylinder->cylinder_start[0],cylinder->cylinder_start[1], cylinder->cylinder_start[2],
-				cylinder->cylinder_axis[0], cylinder->cylinder_axis[1], cylinder->cylinder_axis[2],
-				cylinder->cylinder_radius, obj->clr);
+			cylinder->start[0], cylinder->start[1], cylinder->start[2],
+				cylinder->axis[0], cylinder->axis[1], cylinder->axis[2],
+				cylinder->radius, obj->clr);
 	}
 	if (obj->type == PLANE)
 	{
 		plane = (t_plane *)obj->shape;
 		printf("plane : %f,%f,%f : %f,%f,%f : %d\n",
-			plane->plane_dot[0], plane->plane_dot[1], plane->plane_dot[2],
-				plane->plane_normal[0], plane->plane_dot[1], plane->plane_dot[2], obj->clr);
+			plane->dot[0], plane->dot[1], plane->dot[2],
+				plane->normal[0], plane->dot[1], plane->dot[2], obj->clr);
 	}
 	if (obj->type == SPHERE)
 	{
 		sphere = (t_sphere *)obj->shape;
 		printf("sphere : %f,%f,%f : %f : %d\n",
-			sphere->sphere_center[0], sphere->sphere_center[1], sphere->sphere_center[2],
-				sphere->sphere_radius, obj->clr);
+			sphere->center[0], sphere->center[1], sphere->center[2],
+				sphere->radius, obj->clr);
 	}
-	while(light->next)
+	while (light->next)
 	{
 		light_ = light->shape;
 		if (!light_->type)
