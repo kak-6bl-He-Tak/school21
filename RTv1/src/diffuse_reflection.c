@@ -6,13 +6,13 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/03 17:27:00 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/31 13:30:39 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-float	diffuse_reflection(t_rt *rt, t_ray *ray)
+/*float	diffuse_reflection(t_rt *rt, t_ray *ray)
 {
 	float	i;
 	t_obj	*light;
@@ -101,4 +101,24 @@ float	diffuse_reflection(t_rt *rt, t_ray *ray)
 			}
 		}
 	return (i);
+}*/
+
+float			diffuse_reflection(t_rt *rt, t_ray *ray)
+{
+	float		intensive_ligth;
+	float		intensive_current_ligth;
+	t_obj		*ligth;
+
+	intensive_ligth = 0.0;
+	ligth = rt->ligth;
+	while (ligth)
+	{
+		intensive_current_ligth = ligth->intensive *
+					dot_product(ray->normal, ligth->vector) /
+						(len_vector(ray->normal) * len_vector(ligth->vector));
+		if (intensive_current_ligth > 0.0)
+			intensive_ligth += intensive_current_ligth;
+		ligth = ligth->next;
+	}
+	return (intensive_ligth);
 }
