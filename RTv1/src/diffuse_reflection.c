@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/31 13:30:39 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/08/31 14:06:03 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,28 @@
 
 float			diffuse_reflection(t_rt *rt, t_ray *ray)
 {
-	float		intensive_ligth;
-	float		intensive_current_ligth;
-	t_obj		*ligth;
+	float		intensive_light;
+	float		intensive_current_light;
+	t_light		*light;
+	t_obj		*curr_light;
 
-	intensive_ligth = 0.0;
-	ligth = rt->ligth;
-	while (ligth)
+	intensive_light = 0.0;
+	curr_light = rt->light;
+	while (curr_light)
 	{
-		intensive_current_ligth = ligth->intensive *
-					dot_product(ray->normal, ligth->vector) /
-						(len_vector(ray->normal) * len_vector(ligth->vector));
-		if (intensive_current_ligth > 0.0)
-			intensive_ligth += intensive_current_ligth;
-		ligth = ligth->next;
+		light = curr_light->shape;
+		if (light->type != 0)
+		{
+			intensive_current_light = light->intensive *
+					dot_product(ray->normal, light->vector) /
+						(len_vector(ray->normal) * len_vector(light->vector));
+			if (intensive_current_light > 0.0)
+				intensive_light += intensive_current_light;
+		}
+		else
+			if (light->intensive > 0.0)
+				intensive_light += light->intensive;
+		curr_light = curr_light->next;
 	}
-	return (intensive_ligth);
+	return (intensive_light);
 }
