@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 20:11:45 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/31 13:08:03 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/08/31 13:46:05 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,20 @@ static void	normal_sphere(t_ray *ray, t_obj *cam)
 
 static void	normal_cylinder(t_ray *ray, t_obj *cam)
 {
-	void *a;
-	a = ray;
-	a = cam;
+	float		*p[3];
+	float		*d_t[3];
+	float		*c_p[3];
+	t_cylinder	*cylinder;
+	float		m;
+
+	cylinder = ray->obj->shape;
+	multiplication_point(ray->d, ray->t, d_t);
+	addition_point((float *)cam->shape, d_t, p);
+	subtraction_point(p, cylinder->start, c_p);
+	m = sqrt(pow(len_vector(c_p), 2) - pow(cylinder->radius, 2));
+	multiplication_point(cylinder->axis, -m, ray->normal);
+	subtraction_point(ray->normal, cylinder->start, ray->normal);
+	addition_point(p, ray->normal, ray->normal);
 }
 
 static void	normal_cone(t_ray *ray, t_obj *cam)
