@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 20:11:45 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/01 10:14:29 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/01 11:12:40 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,26 +100,54 @@ static void	normal_cylinder(t_ray *ray, t_obj *cam)
 
 	cylinder = ray->obj->shape;
 	subtraction_point(ray->p, cylinder->start, c_p);
-	//m = sqrt(pow(len_vector(c_p), 2) - pow(cylinder->radius, 2));
 	multiplication_point((float *)cam->shape, 1.0, camera);
 	subtraction_point(camera, cylinder->start, o_c);
 	m = dot_product(ray->d, cylinder->axis) * ray->t +
 							dot_product(o_c, cylinder->axis);
-	//if (dot_product(c_p, cylinder->axis) < 0.0)
-	//	m *= -1;
 	multiplication_point(cylinder->axis, -m, ray->normal);
 	addition_point(c_p, ray->normal, ray->normal);
-	//subtraction_point(ray->p, ray->normal, ray->normal);
 	multiplication_point(ray->normal, 1.0 / len_vector(ray->normal),
 						ray->normal);
-	//printf ("%f | ", len_vector(ray->normal));
 }
+
+// static void	normal_cylinder(t_ray *ray)
+// {
+// 	float		c_p[3];
+// 	t_cylinder	*cylinder;
+// 	float		m;
+
+// 	cylinder = ray->obj->shape;
+// 	subtraction_point(ray->p, cylinder->start, c_p);
+// 	m = sqrt(pow(len_vector(c_p), 2) - pow(cylinder->radius, 2));
+// 	if (ray->d[1] == 0.0)
+// 		printf("%f, %f, %f = %f |",c_p[0],c_p[1], c_p[2], len_vector(c_p));
+// 	if (dot_product(c_p, cylinder->axis) < 0.0)
+// 		m *= -1;
+// 	multiplication_point(cylinder->axis, m, ray->normal);
+// 	addition_point(cylinder->start, ray->normal, ray->normal);
+// 	subtraction_point(ray->p, ray->normal, ray->normal);
+// 	multiplication_point(ray->normal, 1.0 / len_vector(ray->normal),
+// 						ray->normal);
+// }
 
 static void	normal_cone(t_ray *ray, t_obj *cam)
 {
-	void *a;
-	a = ray;
-	a = cam;
+	float		c_p[3];
+	t_cone		*cone;
+	float		m;
+	float		camera[3];
+	float		o_c[3];
+
+	cone = ray->obj->shape;
+	subtraction_point(ray->p, cone->vertex, c_p);
+	multiplication_point((float *)cam->shape, 1.0, camera);
+	subtraction_point(camera, cone->vertex, o_c);
+	m = dot_product(ray->d, cone->axis) * ray->t +
+							dot_product(o_c, cone->axis);
+	multiplication_point(cone->axis, -m * (1 + cone->angle * cone->angle), ray->normal);
+	addition_point(c_p, ray->normal, ray->normal);
+	multiplication_point(ray->normal, 1.0 / len_vector(ray->normal),
+						ray->normal);
 }
 
 void	normal_intersection_dot(t_ray *ray, t_obj *cam)
