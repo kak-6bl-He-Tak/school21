@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/31 14:06:03 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/01 09:41:49 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,20 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 		light = curr_light->shape;
 		if (light->type != 0)
 		{
+			if (light->type == 1)
+			{
+				subtraction_point(light->center, ray->p, light->vector);
+				multiplication_point(light->vector,
+					1.0 / len_vector(light->vector), light->vector);
+			}
 			intensive_current_light = light->intensive *
 					dot_product(ray->normal, light->vector) /
 						(len_vector(ray->normal) * len_vector(light->vector));
-			if (intensive_current_light > 0.0)
+			if (dot_product(ray->normal, light->vector) > 0.0)
 				intensive_light += intensive_current_light;
 		}
-		else
-			if (light->intensive > 0.0)
-				intensive_light += light->intensive;
+		else if (light->intensive > 0.0)
+			intensive_light += light->intensive;
 		curr_light = curr_light->next;
 	}
 	return (intensive_light);
