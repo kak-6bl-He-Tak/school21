@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/02 19:46:04 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/02 20:41:09 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ void					addition_point(float first_point[3],
 void					subtraction_point(float first_point[3],
 										float second_point[3],
 										float destination[3]);
+int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
 
 #endif

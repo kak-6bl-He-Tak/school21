@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/08/30 20:16:03 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/09/02 20:41:36 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ C_FILES= \
 			dot_product.c\
 			clr_cylinder.c\
 			dell_all_obj.c\
+			check_shadow.c\
 			ft_scan_digit.c\
 			get_next_line.c\
 			nearest_object.c\
