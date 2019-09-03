@@ -6,53 +6,60 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:10:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/09/03 13:30:20 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/03 19:27:55 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
+static void		fill_new_cam_and_new_ray(t_obj *camera, t_ray *ray_p_light,
+									t_ray *ray, t_light *light)
+{
+	camera->shape = (void *)ray->p;
+	camera->type = ray->obj->type;//!CAMERA;
+	if (light->type == 1)
+	{
+		//subtraction_point(ray->p, light->center, ray_p_light->d);
+		subtraction_point(light->center, ray->p, ray_p_light->d);
+		ray_p_light->t = len_vector(ray_p_light->d);
+		multiplication_point(ray_p_light->d, 1.0 / ray_p_light->t, ray_p_light->d);
+	}
+	else if (light->type == 2)
+	{
+		multiplication_point(light->vector, -1.0, ray_p_light->d);
+		multiplication_point(ray_p_light->d, 1.0 / len_vector(ray_p_light->d), ray_p_light->d);
+		ray_p_light->t = 2147483647.0;
+	}
+}
+
 int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 {
 	t_obj		camera;
 	t_ray		ray_p_light;
-	t_obj		*tmp;
+	t_obj		*current_obj;
 	float		t;
 
-	tmp = rt->obj;
+	current_obj = rt->obj;
 	ft_bzero((void *)&camera, sizeof(t_obj));
 	ft_bzero((void *)&ray_p_light, sizeof(t_ray));
-	camera.shape = (void *)ray->p;
-	camera.type = ray->obj->type;
-	if (light->type == 1)
-	{
-		subtraction_point(ray->p, light->center, ray_p_light.d);
-		ray_p_light.t = len_vector(ray_p_light.d);
-		multiplication_point(ray_p_light.d, 1.0 / ray_p_light.t, ray_p_light.d);
-	}
-	else if (light->type == 2)
-	{
-		multiplication_point(light->vector, -1.0, /*ray_p_light.d);*/ray->p);
-		//ray_p_light.t = len_vector(ray_p_light.d);
-		//multiplication_point(ray_p_light.d, 1.0 / ray_p_light.t, ray_p_light.d);
-		ray_p_light.t = 2147483647.0;
-	}
-	else
-		return (SUCCESS);
+	fill_new_cam_and_new_ray(&camera, &ray_p_light, ray, light);
 	t = ray_p_light.t;
-	while (tmp->next)
+	while (current_obj->next)
 	{
-		tmp = tmp->next;
-		if (tmp->type == SPHERE)
-			clr_sphere(&camera, tmp, &ray_p_light);
-		else if (tmp->type == PLANE)
-			clr_plane(&camera, tmp, &ray_p_light);
-		else if (tmp->type == CYLINDER)
-			clr_cylinder(&camera, tmp, &ray_p_light);
-		else if (tmp->type == CONE)
-			clr_cone(&camera, tmp, &ray_p_light);
-		if (ray_p_light.t < t)
-			return (FAIL);
+		current_obj = current_obj->next;
+		if (current_obj != ray->obj)
+		{
+			if (current_obj->type == SPHERE)
+				clr_sphere(&camera, current_obj, &ray_p_light);
+			else if (current_obj->type == PLANE)
+				clr_plane(&camera, current_obj, &ray_p_light);
+			else if (current_obj->type == CYLINDER)
+				clr_cylinder(&camera, current_obj, &ray_p_light);
+			else if (current_obj->type == CONE)
+				clr_cone(&camera, current_obj, &ray_p_light);
+			if (ray_p_light.t < t)
+				return (FAIL);
+		}
 	}
 	return (SUCCESS);
 }

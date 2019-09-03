@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/31 17:19:16 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/03 18:53:38 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ int			set_light(t_obj **obj, char *gnl)
 		light->vector[0] = ft_scan_digit(&save);
 		light->vector[1] = ft_scan_digit(&save);
 		light->vector[2] = ft_scan_digit(&save);
-		multiplication_point(light->vector, 1.0 / len_vector(light->vector),
+		multiplication_point(light->vector, -1.0 / len_vector(light->vector),
 					light->vector);
 	}
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/03 12:43:59 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/03 19:01:27 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 		light = curr_light->shape;
 		if (light->type == 0 && light->intensive > 0.0)
 			intensive_light += light->intensive;
-		else if (light->type != 0 && check_shadow(rt, ray, light) == SUCCESS)
+		else if (light->type != 0)// && check_shadow(rt, ray, light) == SUCCESS)
 		{
 			if (light->type == 1)
 			{
@@ -40,7 +40,7 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 			if (dot_product(ray->normal, light->vector) > 0.0)
 				intensive_light += intensive_current_light;
 			//блики
-	
+	/*
 			float l[3];
 			float r[3];
 			float d_minus[3];
@@ -54,7 +54,7 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 			if ((r_dot_v = dot_product(d_minus, r)) > 0.0)
 				intensive_light += light->intensive *
 					pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50);
-
+	*/
 			//конец бликов
 		}
 		curr_light = curr_light->next;
