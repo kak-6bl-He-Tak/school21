@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:10:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/09/02 20:57:55 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/03 13:30:20 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,19 @@ int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 	camera.type = ray->obj->type;
 	if (light->type == 1)
 	{
-		subtraction_point(light->center, ray->p, ray_p_light.d);
+		subtraction_point(ray->p, light->center, ray_p_light.d);
 		ray_p_light.t = len_vector(ray_p_light.d);
-		multiplication_point(ray_p_light.d, 1 / ray_p_light.t, ray_p_light.d);
+		multiplication_point(ray_p_light.d, 1.0 / ray_p_light.t, ray_p_light.d);
 	}
-	else
+	else if (light->type == 2)
 	{
-		multiplication_point(light->vector, -1, ray->p);
+		multiplication_point(light->vector, -1.0, /*ray_p_light.d);*/ray->p);
+		//ray_p_light.t = len_vector(ray_p_light.d);
+		//multiplication_point(ray_p_light.d, 1.0 / ray_p_light.t, ray_p_light.d);
 		ray_p_light.t = 2147483647.0;
 	}
+	else
+		return (SUCCESS);
 	t = ray_p_light.t;
 	while (tmp->next)
 	{
@@ -47,8 +51,8 @@ int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 			clr_cylinder(&camera, tmp, &ray_p_light);
 		else if (tmp->type == CONE)
 			clr_cone(&camera, tmp, &ray_p_light);
+		if (ray_p_light.t < t)
+			return (FAIL);
 	}
-	if (ray_p_light.t < t)
-		return (FAIL);
 	return (SUCCESS);
 }
