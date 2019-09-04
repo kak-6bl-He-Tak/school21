@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/04 11:08:59 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/04 20:24:54 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,23 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 		light = curr_light->shape;
 		if (light->type == 0 && light->intensive > 0.0)
 			intensive_light += light->intensive;
-		else if (light->type != 0 && check_shadow(rt, ray, light) == SUCCESS)
+		else if (light->type != 0)// && check_shadow(rt, ray, light) == SUCCESS)
 		{
 			if (light->type == 1)
 			{
-				subtraction_point(light->center, ray->p, l);
-				//subtraction_point(ray->p, light->center, l);
-				multiplication_point(l,
-					1.0 / len_vector(l), l);
-				//multiplication_point(l,
-				//	1.0 / len_vector(l), l);
-			}
+				subtraction_point(light->center, ray->p, l); ////<- это верный результат
+				// вектора от точки пересечения к центру света(от конца(свет) отняли начало(Р))
+				multiplication_point(l, 1.0 / len_vector(l), l);
+			} //принтил и вектор строит верный
 			else if (light->type == 2)
 			{
 				multiplication_point(light->vector,
-					-1.0 / len_vector(light->vector), l);
-			}
-			//intensive_current_light = light->intensive *
-			//		dot_product(ray->normal, light->vector) /
-			//			(len_vector(ray->normal) * len_vector(light->vector));
+					1.0 / len_vector(light->vector), l);
+			} //тут всё чётко я принтил вектор и всё верно
 			intensive_current_light = light->intensive *
 					dot_product(ray->normal, l) /
 						(len_vector(ray->normal) * len_vector(l));
-			if (intensive_current_light > 0.0)//dot_product(ray->normal, light->vector) > 0.0)
+			if (dot_product(ray->normal, l) > 0)// dot_product(ray->normal,light->vector) > 0.0 <-вот это условие было неверное
 				intensive_light += intensive_current_light;
 			//блики
 	///*
@@ -80,3 +74,10 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 	}
 	return (intensive_light);
 }
+
+				// if (ray->d[0] == 0.0 && ray->d[1] == 0.0)
+				// {
+				// 	printf("\n\nx %f y %f z %f\n", l[0], l[1], l[2]);
+				// 	printf("x %f y %f z %f\n", ray->normal[0], ray->normal[1], ray->normal[2]);
+				// 	printf("%f\n", dot_product(ray->normal, l)/(len_vector(ray->normal) * len_vector(l)));
+				// } //принты векторов в центре экрана
