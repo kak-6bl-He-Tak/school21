@@ -13,5 +13,6 @@ sphere    : 0,2.5,20 : 5 : 167
 #cone      : 0,10,10 : 2.5,-3,15 : 20 : 234098
 #light    : type : intensive : dot(1) or vector(2)
 light     : 0 : 0.000001
-light     : 1 : 0.6 : 20,-20,0
+#light     : 1 : 0.6 : 20,-20,0
+#light     : 1 : 0.6 : 0,0,0
 light     : 2 : 0.3: 0,-1,0

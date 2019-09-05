@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/02 20:41:09 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 16:36:59 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,20 @@ void					trace_ray(t_rt *rt);
 void					dell_all_obj(t_obj **obj);
 void					print_all(t_obj *obj, t_obj *light);
 
-void					clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray);
-void					clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray);
-void					clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray);
-void					clr_cylinder(t_obj *cam, t_obj *current_obj,
-																t_ray *ray);
+int						clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray,
+															float roots[2]);
+int						clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray,
+															float roots[2]);
+int						clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray,
+															float roots[2]);
+int						clr_cylinder(t_obj *cam, t_obj *current_obj,
+												t_ray *ray, float roots[2]);
 
 void					normal_intersection_dot(t_ray *ray, t_obj *cam);
-void					nearest_object(t_ray *ray, float root, t_obj *obj, t_obj *cam);
-void					nearest_objects(t_ray *ray, float roots[2], t_obj *obj, t_obj *cam);
+void					nearest_object(t_ray *ray, float root,
+												t_obj *obj, t_obj *cam);
+void					nearest_objects(t_ray *ray, float roots[2],
+												t_obj *obj, t_obj *cam);
 
 int						roots_quadratic_equation(float a, float b, float c,
 												float roots[2]);

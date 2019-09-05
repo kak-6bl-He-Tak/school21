@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/04 19:29:46 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 16:37:57 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,25 @@ void		object_patrol(t_rt *rt, t_ray *ray)
 {
 	t_obj	*cam;
 	t_obj	*obj;
+	float	roots[2];
+	int		result;
 
 	cam = rt->obj;
 	obj = cam;
 	while (obj->next)
 	{
 		obj = obj->next;
+		ft_bzero((void *)roots, sizeof(float) * 2);
 		if (obj->type == SPHERE)
-			clr_sphere(cam, obj, ray);
+			result = clr_sphere(cam, obj, ray, roots);
 		else if (obj->type == PLANE)
-			clr_plane(cam, obj, ray);
+			result = clr_plane(cam, obj, ray, roots);
 		else if (obj->type == CYLINDER)
-			clr_cylinder(cam, obj, ray);
+			result = clr_cylinder(cam, obj, ray, roots);
 		else if (obj->type == CONE)
-			clr_cone(cam, obj, ray);
+			result = clr_cone(cam, obj, ray, roots);
+		if (result == SUCCESS)
+			nearest_objects(ray, roots, obj, cam);
 	}
 }
 

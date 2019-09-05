@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/04 20:24:54 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 17:52:10 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 			{
 				subtraction_point(light->center, ray->p, l); ////<- это верный результат
 				// вектора от точки пересечения к центру света(от конца(свет) отняли начало(Р))
-				multiplication_point(l, 1.0 / len_vector(l), l);
+				//multiplication_point(l, 1.0 / len_vector(l), l);
 			} //принтил и вектор строит верный
 			else if (light->type == 2)
 			{
-				multiplication_point(light->vector,
-					1.0 / len_vector(light->vector), l);
+				multiplication_point(light->vector, -1.0, l);
+					//1.0 / len_vector(light->vector), l);
 			} //тут всё чётко я принтил вектор и всё верно
 			intensive_current_light = light->intensive *
 					dot_product(ray->normal, l) /
@@ -46,7 +46,7 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 			if (dot_product(ray->normal, l) > 0)// dot_product(ray->normal,light->vector) > 0.0 <-вот это условие было неверное
 				intensive_light += intensive_current_light;
 			//блики
-	///*
+	/*
 			//float l[3];
 			float r[3];
 			float d_minus[3];
@@ -67,7 +67,7 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 			if ((r_dot_v = dot_product(d_minus, r)) > 0.0)
 				intensive_light += light->intensive *
 					pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50);
-	//*/
+	*/
 			//конец бликов
 		}
 		curr_light = curr_light->next;

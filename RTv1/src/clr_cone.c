@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 20:52:10 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/31 10:56:58 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 16:37:29 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 ** D - vector of view
 */
 
-void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
+int					clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray,
+															float roots[2])
 {
 	t_cone			*cone;
 	float			coefficient_quadratic_equation[3];
-	float			roots[2];
 	float			o_c[3];
 	float			tmp;
 
@@ -52,6 +52,6 @@ void				clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray)
 								coefficient_quadratic_equation[1],
 								coefficient_quadratic_equation[2],
 								roots) == FAIL)
-		return ;
-	nearest_objects(ray, roots, current_obj, cam);
+		return (FAIL);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:03:21 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/31 10:45:59 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 16:39:08 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 ** D - vector of view
 */
 
-void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
+int				clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray,
+													float roots[2])
 {
 	float		o_c[3];
 	float		coefficient_quadratic_equation[3];
-	float		roots[2];
 	t_sphere	*sphere;
 
 	sphere = (t_sphere *)obj->shape;
@@ -43,6 +43,6 @@ void		clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray)
 								coefficient_quadratic_equation[1],
 								coefficient_quadratic_equation[2],
 								roots) == FAIL)
-		return ;
-	nearest_objects(ray, roots, obj, cam);
+		return (FAIL);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:13:55 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/08/31 10:49:13 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/05 16:38:43 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 **		roots not exist (plane parallel of vector of view)
 */
 
-void			clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray)
+int				clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray,
+															float roots[2])
 {
 	float		root;
 	float		delitel;
@@ -34,9 +35,11 @@ void			clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray)
 	plane = (t_plane *)current_obj->shape;
 	delitel = dot_product(ray->d, plane->normal);
 	if (delitel == 0)
-		return ;
+		return (FAIL);
 	subtraction_point((float *)cam->shape, plane->dot, o_c);
 	root = -1.0 * dot_product(o_c, plane->normal);
 	root /= delitel;
-	nearest_object(ray, root, current_obj, cam);
+	roots[0] = root;
+	roots[1] = root;
+	return (SUCCESS);
 }
