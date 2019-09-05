@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/05 16:37:57 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/05 21:15:33 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void		trace_ray(t_rt *rt)
 			ray.d[0] = (float)(x - W / 2) * 1 / W;
 			ray.d[1] = (float)(H / 2 - y) * 1 / H;
 			ray.d[2] = 1;
+			multiplication_point(ray.d, 1.0 / len_vector(ray.d), ray.d);
 			ray.t = 2147483647;
 			ray.obj = 0;
 			object_patrol(rt, &ray);
