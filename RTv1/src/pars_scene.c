@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/05 16:56:50 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/08 12:00:45 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ int			set_plane(t_obj **obj, char *gnl)
 	plane->normal[0] = normal[0] / len_normal;
 	plane->normal[1] = normal[1] / len_normal;
 	plane->normal[2] = normal[2] / len_normal;
-	printf("\n\n%f, %f, %f, %f\n", len_normal, plane->normal[0],
-			 plane->normal[1], plane->normal[2]);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);
 }
@@ -108,9 +106,7 @@ int				set_cylinder(t_obj **obj, char *gnl)
 	axis[1] = ft_scan_digit(&save);
 	axis[2] = ft_scan_digit(&save);
 	len_vect = len_vector(axis);
-	cylinder->axis[0] = axis[0] / len_vect;
-	cylinder->axis[1] = axis[1] / len_vect;
-	cylinder->axis[2] = axis[2] / len_vect;
+	multiplication_point(axis, 1.0 / len_vector(axis), cylinder->axis);
 	cylinder->radius = ft_scan_digit(&save);
 	obj[0]->clr = (int)ft_scan_digit(&save);
 	return (1);

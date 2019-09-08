@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:10:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/09/06 16:54:08 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/08 12:13:01 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 	t_obj		camera;
 	t_ray		ray_p_light;
 	t_obj		*current_obj;
-	float		t;
 	float		result;
 	float		roots[2];
 
@@ -45,7 +44,6 @@ int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 	ft_bzero((void *)&camera, sizeof(t_obj));
 	ft_bzero((void *)&ray_p_light, sizeof(t_ray));
 	fill_new_cam_and_new_ray(&camera, &ray_p_light, ray, light);
-	t = ray_p_light.t;
 	while (current_obj->next)
 	{
 		current_obj = current_obj->next;

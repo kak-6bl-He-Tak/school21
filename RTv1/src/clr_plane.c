@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 20:13:55 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/09/05 16:38:43 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/08 13:19:18 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int				clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray,
 
 	plane = (t_plane *)current_obj->shape;
 	delitel = dot_product(ray->d, plane->normal);
-	if (delitel == 0)
-		return (FAIL);
 	subtraction_point((float *)cam->shape, plane->dot, o_c);
+	if (fabs(delitel) < 0.0001 || (
+		(dot_product(ray->d, plane->normal) < 0.0 && dot_product(o_c, plane->normal) < 0.0) ||
+		(dot_product(ray->d, plane->normal) > 0.0 && dot_product(o_c, plane->normal) > 0.0)))
+		return (FAIL);
 	root = -1.0 * dot_product(o_c, plane->normal);
 	root /= delitel;
 	roots[0] = root;
