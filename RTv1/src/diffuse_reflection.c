@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/08 16:36:29 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/09 12:24:58 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ static float	mirror_light(t_ray *ray, t_light *light)
 	if ((r_dot_v = dot_product(d_minus, r)) > 0.0)
 	{
 		cos_l_n = pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50);
-		if (cos_l_n >= 0.85)
-			ray->clr = 0xFFFFFF;
+		//if (cos_l_n >= 0.85)
+		//	ray->clr = ((int)((ray->clr >> 16) * 1.25) << 16)  + ((int)(((ray->clr >> 8) % 256) * 1.25) << 8) + ray->clr % 256 * 1.25;//0xFFFFFF;
 		return (light->intensive * cos_l_n);
 				//pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50));
 	}

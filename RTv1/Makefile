@@ -6,37 +6,38 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/02 20:41:36 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/09/09 12:08:16 by udraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-SRC_DIR=./src
-OBJ_DIR=./objects
-C_FILES= \
-			main.c\
-			new_obj.c\
-			ft_exit.c\
-			ft_atof.c\
+SRC_DIR := ./src
+OBJ_DIR := ./objects
+C_FILES :=	\
+			check_shadow.c\
 			clr_cone.c\
-			trace_ray.c\
-			print_all.c\
+			clr_cylinder.c\
 			clr_plane.c\
 			clr_sphere.c\
-			pars_scene.c\
-			len_vector.c\
-			dot_product.c\
-			clr_cylinder.c\
 			dell_all_obj.c\
-			check_shadow.c\
+			diffuse_reflection.c\
+			dot_product.c\
+			ft_atof.c\
+			ft_exit.c\
 			ft_scan_digit.c\
 			get_next_line.c\
+			len_vector.c\
+			main.c\
 			nearest_object.c\
-			diffuse_reflection.c\
-			operation_with_point.c\
+			new_obj.c\
 			normal_intersection_dot.c\
+			operation_with_point.c\
+			pars_scene.c\
+			print_all.c\
 			roots_quadratic_equation.c\
+			rotation.c\
+			trace_ray.c
 
 O_FILES = $(C_FILES:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/08 13:21:18 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/09 12:10:41 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int						clr_cylinder(t_obj *cam, t_obj *current_obj,
 												t_ray *ray, float roots[2]);
 
 void					normal_intersection_dot(t_ray *ray, t_obj *cam);
+int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
+
 void					nearest_object(t_ray *ray, float root,
 												t_obj *obj, t_obj *cam);
 void					nearest_objects(t_ray *ray, float roots[2],
@@ -105,6 +107,12 @@ void					addition_point(float first_point[3],
 void					subtraction_point(float first_point[3],
 										float second_point[3],
 										float destination[3]);
-int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
+
+void					rotation_on_x(float vector[3], float angle,
+										float destination[3]);
+void					rotation_on_y(float vector[3], float angle,
+										float destination[3]);
+void					rotation_on_z(float vector[3], float angle,
+										float destination[3]);
 
 #endif
