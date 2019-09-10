@@ -1,5 +1,5 @@
-#camera   : x,y,z
-camera    : 0,0,0
+#camera   : x,y,z : angle x, y, z
+camera    : 0,0,0 :  0,0,30
 #sphere   : center x,y,z : radius r : clr
 sphere    : 7,2,20 : 2 : 16700000
 sphere    : -7,2,20 : 2 : 16731200

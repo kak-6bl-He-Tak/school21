@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/08 12:00:45 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/10 18:52:26 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,16 @@ int			set_camera(t_obj **obj, char *gnl)
 
 	save = &gnl[11];
 	obj[0]->type = CAMERA;
-	if (!(obj[0]->shape = ft_memalloc(sizeof(float) * 3)))
+	if (!(obj[0]->shape = ft_memalloc(sizeof(float) * 6)))
 		return (0);
 
 	camera = (float *)obj[0]->shape;
 	camera[0] = ft_scan_digit(&save);
 	camera[1] = ft_scan_digit(&save);
 	camera[2] = ft_scan_digit(&save);
+	camera[3] = ft_scan_digit(&save);
+	camera[4] = ft_scan_digit(&save);
+	camera[5] = ft_scan_digit(&save);
 	return (1);
 }
 

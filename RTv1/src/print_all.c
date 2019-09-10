@@ -7,14 +7,22 @@ void print_all(t_obj *obj, t_obj *light)
 	t_light	*light_;
 	t_plane	*plane;
 	t_sphere	*sphere;
+	float		*camera;
 
 	while (obj->next)
 	{
+		if (obj->type == CAMERA)
+		{
+			camera = (float *)obj->shape;
+			printf("camera : %f,%f,%f : %f,%f,%f\n",
+				camera[0], camera[1], camera[2],
+					camera[3], camera[4], camera[5]);
+		}
 		if (obj->type == CONE)
 		{
 			cone = (t_cone *)obj->shape;
 			printf("cone : %f,%f,%f : %f,%f,%f : %f : %d\n",
-				cone->vertex[0], cone->vertex[1], cone->vertex[0],
+				cone->vertex[0], cone->vertex[1], cone->vertex[2],
 					cone->axis[0], cone->axis[1], cone->axis[2],
 						cone->angle, obj->clr);
 		}
