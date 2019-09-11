@@ -6,13 +6,13 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/08/29 20:17:21 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/11 20:52:30 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	start_mlx(t_rt *rt)
+void					start_mlx(t_rt *rt)
 {
 	int		bpp;
 	int		size_line;
@@ -21,7 +21,8 @@ void	start_mlx(t_rt *rt)
 	if (!(rt->mlx_ptr = mlx_init())
 		|| !(rt->win_ptr = mlx_new_window(rt->mlx_ptr, W, H, "RTv1")) ||
 		!(rt->img_ptr = mlx_new_image(rt->mlx_ptr, W, H)) ||
-		!(rt->img_data = (int *)mlx_get_data_addr(rt->img_ptr, &bpp, &size_line, &end)))
+		!(rt->img_data = (int *)mlx_get_data_addr(rt->img_ptr, &bpp,
+									&size_line, &end)))
 	{
 		perror("Ошибка инициализации MLX");
 		ft_exit(rt);
@@ -35,8 +36,7 @@ static int				press_key(int key, t_rt *rt)
 	return (0);
 }
 
-
-int main(int argc, char **argv)
+int						main(int argc, char **argv)
 {
 	t_rt	rt;
 
@@ -48,20 +48,16 @@ int main(int argc, char **argv)
 			ft_exit(&rt);
 		}
 	}
-
 	else
 	{
-	ft_putendl("Use: ./RTv1 [scene file]");
-	ft_exit(&rt);
+		ft_putendl("Use: ./RTv1 [scene file]");
+		ft_exit(&rt);
 	}
 	start_mlx(&rt);
 	print_all(rt.obj, rt.light);
-
 	trace_ray(&rt);
-
-
 	mlx_hook(rt.win_ptr, 2, 0, press_key, &rt);
 	mlx_hook(rt.win_ptr, 17, 0, ft_exit, (void *)&rt);
 	mlx_loop(rt.mlx_ptr);
-	return(0);
+	return (0);
 }

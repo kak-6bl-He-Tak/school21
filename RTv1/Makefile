@@ -6,38 +6,39 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/09 12:08:16 by udraugr-         ###   ########.fr        #
+#    Updated: 2019/09/11 20:20:03 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RTv1
 
-SRC_DIR := ./src
-OBJ_DIR := ./objects
-C_FILES :=	\
-			check_shadow.c\
+SRC_DIR=./src
+OBJ_DIR=./objects
+C_FILES= \
+			main.c\
+			new_obj.c\
+			ft_exit.c\
+			ft_atof.c\
+			rotation.c\
 			clr_cone.c\
-			clr_cylinder.c\
+			trace_ray.c\
+			print_all.c\
 			clr_plane.c\
 			clr_sphere.c\
-			dell_all_obj.c\
-			diffuse_reflection.c\
+			pars_scene.c\
+			len_vector.c\
 			dot_product.c\
-			ft_atof.c\
-			ft_exit.c\
+			clr_cylinder.c\
+			dell_all_obj.c\
+			check_shadow.c\
 			ft_scan_digit.c\
 			get_next_line.c\
-			len_vector.c\
-			main.c\
 			nearest_object.c\
-			new_obj.c\
-			normal_intersection_dot.c\
+			diffuse_reflection.c\
 			operation_with_point.c\
-			pars_scene.c\
-			print_all.c\
+			set_shape_and_lights.c\
+			normal_intersection_dot.c\
 			roots_quadratic_equation.c\
-			rotation.c\
-			trace_ray.c
 
 O_FILES = $(C_FILES:.c=.o)
 

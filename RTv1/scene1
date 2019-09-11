@@ -1,5 +1,5 @@
 #camera   : x,y,z
-camera    : 0,0,0
+camera    : 0,0,0 : 0,-20,0
 #sphere   : center x,y,z : radius r : clr
 sphere    : 0,0,20 : 5 : 16700000
 #plane    : dot x,y,z : normal x,y,z : clr

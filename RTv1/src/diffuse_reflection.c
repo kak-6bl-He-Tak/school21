@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/03 15:54:27 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/09 12:24:58 by udraugr-         ###   ########.fr       */
+/*   Updated: 2019/09/11 20:50:30 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ static float	not_mirror_light(t_ray *ray, t_light *light)
 	{
 		multiplication_point(light->vector, -1.0, l);
 	}
-		intensive_current_light = light->intensive * dot_product(ray->normal, l) /
-		(len_vector(ray->normal) * len_vector(l));
+	intensive_current_light = light->intensive *
+		dot_product(ray->normal, l) /
+			(len_vector(ray->normal) * len_vector(l));
 	if (dot_product(ray->normal, l) > 0)
 	{
 		return (intensive_current_light);
@@ -57,10 +58,7 @@ static float	mirror_light(t_ray *ray, t_light *light)
 	if ((r_dot_v = dot_product(d_minus, r)) > 0.0)
 	{
 		cos_l_n = pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50);
-		//if (cos_l_n >= 0.85)
-		//	ray->clr = ((int)((ray->clr >> 16) * 1.25) << 16)  + ((int)(((ray->clr >> 8) % 256) * 1.25) << 8) + ray->clr % 256 * 1.25;//0xFFFFFF;
 		return (light->intensive * cos_l_n);
-				//pow((r_dot_v / (len_vector(r) * len_vector(ray->d))), 50));
 	}
 	return (0.0f);
 }
@@ -87,10 +85,3 @@ float			diffuse_reflection(t_rt *rt, t_ray *ray)
 	}
 	return (intensive_light);
 }
-
-				// if (ray->d[0] == 0.0 && ray->d[1] == 0.0)
-				// {
-				// 	printf("\n\nx %f y %f z %f\n", l[0], l[1], l[2]);
-				// 	printf("x %f y %f z %f\n", ray->normal[0], ray->normal[1], ray->normal[2]);
-				// 	printf("%f\n", dot_product(ray->normal, l)/(len_vector(ray->normal) * len_vector(l)));
-				// } //принты векторов в центре экрана
