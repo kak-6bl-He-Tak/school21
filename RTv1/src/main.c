@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/11 20:52:30 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:00:48 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int						main(int argc, char **argv)
 	{
 		if (!(pars_scene(argv[1], &rt)))
 		{
+			ft_putendl("Invalid file");
 			ft_exit(&rt);
 		}
 	}

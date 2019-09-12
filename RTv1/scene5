@@ -1,5 +1,5 @@
 #camera   : x,y,z : angle x, y, z
-camera    : 0,0,0 :  0,0,30
+camera    : 0,0,-10 :  -10,0,30
 #sphere   : center x,y,z : radius r : clr
 sphere    : 7,2,20 : 2 : 16700000
 sphere    : -7,2,20 : 2 : 16731200
@@ -17,5 +17,4 @@ cone      : 0,0,10 : 1,1,0 : 20 : 234098
 #light    : type : intensive : dot(1) or vector(2)
 light     : 0 : 0.2
 light     : 1 : 0.6 : 2,1,0
-light     : 2 : 0.25 : 1,4,4
-Œ
+light     : 2 : 0.25 : 0,0,1

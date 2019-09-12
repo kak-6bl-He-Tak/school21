@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/11 20:21:25 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:34:10 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct			s_ray
 	float				normal[3];
 	t_obj				*obj;
 	float				min_t;
+	char				tyt;
 }						t_ray;
 
 int						ft_exit(t_rt *rt);

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/11 20:25:45 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/12 20:06:32 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int			set_shapes(char *gnl, t_rt *rt, t_obj *tmp)
 	if (!ft_strncmp(gnl, "plane     :", 11))
 		if (!(set_plane(&tmp, gnl)))
 			return (0);
-	if (!ft_strncmp(gnl, "cylinder   :", 11))
+	if (!ft_strncmp(gnl, "cylinder  :", 11))
 		if (!(set_cylinder(&tmp, gnl)))
 			return (0);
 	if (!ft_strncmp(gnl, "cone      :", 11))
@@ -72,11 +72,11 @@ static int			ft_koroche(char *gnl, t_rt *rt, t_obj *tmp)
 	if (ft_strncmp(gnl, "camera    :", 11) &&
 		ft_strncmp(gnl, "sphere    :", 11) &&
 			ft_strncmp(gnl, "plane     :", 11) &&
-				ft_strncmp(gnl, "cylinder   :", 11) &&
+				ft_strncmp(gnl, "cylinder  :", 11) &&
 					ft_strncmp(gnl, "cone      :", 11) &&
 						ft_strncmp(gnl, "light     :", 11))
 		return (0);
-	else if (!ft_strncmp(gnl, "light     :", 11))
+	if (!ft_strncmp(gnl, "light     :", 11))
 	{
 		if (!(tmp = new_obj(&rt->light)))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/11 20:36:08 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/12 19:56:34 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ void		trace_ray(t_rt *rt)
 			{
 				i = diffuse_reflection(rt, &ray);
 				ray.clr = colr_mod(ray.clr, i);
+				if (x == 100 && y == 1000)
+					ray.tyt = 1;
+				else
+					ray.tyt = 0;
 			}
 			rt->img_data[y * W + x] = ray.clr;
 		}
