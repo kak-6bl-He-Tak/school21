@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/11 20:20:03 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/09/13 19:21:13 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ C_FILES= \
 			clr_plane.c\
 			clr_sphere.c\
 			pars_scene.c\
+			valid_data.c\
 			len_vector.c\
 			dot_product.c\
 			clr_cylinder.c\

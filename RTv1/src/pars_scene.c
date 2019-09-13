@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/12 20:06:32 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/13 20:33:41 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,12 @@ static int			set_shapes(char *gnl, t_rt *rt, t_obj *tmp)
 	if (!ft_strncmp(gnl, "camera    :", 11))
 		if (!set_camera(&rt->obj, gnl))
 			return (0);
-	if (!(tmp = new_obj(&rt->obj)))
-		return (0);
+	if (!ft_strncmp(gnl, "sphere    :", 11) ||
+		!ft_strncmp(gnl, "plane     :", 11) ||
+			!ft_strncmp(gnl, "cylinder  :", 11) ||
+				!ft_strncmp(gnl, "cone      :", 11))
+		if (!(tmp = new_obj(&rt->obj)))
+			return (0);
 	if (!ft_strncmp(gnl, "sphere    :", 11))
 		if (!(set_sphere(&tmp, gnl)))
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/12 20:00:48 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/13 20:41:54 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static int				press_key(int key, t_rt *rt)
 	return (0);
 }
 
+static int				cho_kavo(char *argv, t_rt *rt)
+{
+	if (pars_scene(argv, rt) == 0)
+		return (0);
+	print_all(rt->obj, rt->light);
+	if (valid_data(rt) == 0)
+		return (0);
+	return (1);
+}
+
 int						main(int argc, char **argv)
 {
 	t_rt	rt;
@@ -43,7 +53,7 @@ int						main(int argc, char **argv)
 	ft_bzero((void *)&rt, sizeof(rt));
 	if (argc == 2)
 	{
-		if (!(pars_scene(argv[1], &rt)))
+		if (!cho_kavo(argv[1], &rt))
 		{
 			ft_putendl("Invalid file");
 			ft_exit(&rt);
@@ -55,7 +65,6 @@ int						main(int argc, char **argv)
 		ft_exit(&rt);
 	}
 	start_mlx(&rt);
-	print_all(rt.obj, rt.light);
 	trace_ray(&rt);
 	mlx_hook(rt.win_ptr, 2, 0, press_key, &rt);
 	mlx_hook(rt.win_ptr, 17, 0, ft_exit, (void *)&rt);

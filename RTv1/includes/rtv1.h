@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/12 19:34:10 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/13 19:20:45 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,28 +61,18 @@ typedef struct			s_ray
 	float				normal[3];
 	t_obj				*obj;
 	float				min_t;
-	char				tyt;
 }						t_ray;
 
 int						ft_exit(t_rt *rt);
+int						valid_data(t_rt *rt);
 int						pars_scene(char *str, t_rt *rt);
-int						get_next_line(const int fd, char **line);
-int						set_sphere(t_obj **obj, char *gnl);
-int						set_plane(t_obj **obj, char *gnl);
-int						set_cylinder(t_obj **obj, char *gnl);
 int						set_cone(t_obj **obj, char *gnl);
+int						set_plane(t_obj **obj, char *gnl);
 int						set_light(t_obj **obj, char *gnl);
-
-float					ft_atof(const char *str);
-float					ft_scan_digit(char **str);
-float					diffuse_reflection(t_rt *rt, t_ray *ray);
-
-t_obj					*new_obj(t_obj **obj);
-
-void					trace_ray(t_rt *rt);
-void					dell_all_obj(t_obj **obj);
-void					print_all(t_obj *obj, t_obj *light);
-
+int						set_sphere(t_obj **obj, char *gnl);
+int						set_cylinder(t_obj **obj, char *gnl);
+int						get_next_line(const int fd, char **line);
+int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
 int						clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray,
 															float roots[2]);
 int						clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray,
@@ -91,18 +81,26 @@ int						clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray,
 															float roots[2]);
 int						clr_cylinder(t_obj *cam, t_obj *current_obj,
 												t_ray *ray, float roots[2]);
+int						roots_quadratic_equation(float a, float b, float c,
+												float roots[2]);
 
+float					ft_atof(const char *str);
+float					ft_scan_digit(char **str);
+float					len_vector(float vector[3]);
+float					diffuse_reflection(t_rt *rt, t_ray *ray);
+float					dot_product(float first_point[3],
+									float second_point[3]);
+
+t_obj					*new_obj(t_obj **obj);
+
+void					trace_ray(t_rt *rt);
+void					dell_all_obj(t_obj **obj);
+void					print_all(t_obj *obj, t_obj *light);
 void					normal_intersection_dot(t_ray *ray, t_obj *cam);
 void					nearest_object(t_ray *ray, float root,
 												t_obj *obj, t_obj *cam);
 void					nearest_objects(t_ray *ray, float roots[2],
 												t_obj *obj, t_obj *cam);
-
-int						roots_quadratic_equation(float a, float b, float c,
-												float roots[2]);
-float					len_vector(float vector[3]);
-float					dot_product(float first_point[3],
-									float second_point[3]);
 void					multiplication_point(float first_point[3], float k,
 											float destination[3]);
 void					addition_point(float first_point[3],
@@ -111,7 +109,6 @@ void					addition_point(float first_point[3],
 void					subtraction_point(float first_point[3],
 										float second_point[3],
 										float destination[3]);
-int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
 void					rotation_on_z(float vector[3], float angle,
 										float destination[3]);
 void					rotation_on_x(float vector[3], float angle,
