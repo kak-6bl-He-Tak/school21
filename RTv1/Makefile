@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/13 19:21:13 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/09/14 11:39:07 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC_DIR=./src
 OBJ_DIR=./objects
 C_FILES= \
 			main.c\
+			hooks.c\
 			new_obj.c\
 			ft_exit.c\
 			ft_atof.c\

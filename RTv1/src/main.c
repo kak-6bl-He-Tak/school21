@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/14 09:40:25 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:17:12 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,25 @@ static int				press_key(int key, t_rt *rt)
 {
 	if (key == 53)
 		ft_exit(rt);
+	if ((key >= 123 && key <= 126) || key == 116 || key == 121
+		|| (key >= 83 && key <= 88))
+		hooks(key, rt);
 	return (0);
 }
 
 static int				cho_kavo(char *argv, t_rt *rt)
 {
 	if (pars_scene(argv, rt) == 0)
+	{
+		ft_putendl("Unknow shape");
 		return (0);
+	}
 	print_all(rt->obj, rt->light);
 	if (valid_data(rt) == 0)
+	{
+		ft_putendl("Invalid data");
 		return (0);
+	}
 	return (1);
 }
 
@@ -54,10 +63,7 @@ int						main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (!cho_kavo(argv[1], &rt))
-		{
-			ft_putendl("Invalid file");
 			ft_exit(&rt);
-		}
 	}
 	else
 	{

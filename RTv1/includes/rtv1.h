@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/13 19:20:45 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:33:41 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 
 # include "shapes.h"
 
-# include <stdlib.h>
+# include <math.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdlib.h>
 # include <unistd.h>
-# include <math.h>
+# include <pthread.h>
 
 # define W 1300
 # define H 1300
@@ -63,6 +64,13 @@ typedef struct			s_ray
 	float				min_t;
 }						t_ray;
 
+typedef struct			s_pthread_ray
+{
+		int				y;
+		t_rt			*rt;
+}						t_pthread_ray;
+
+
 int						ft_exit(t_rt *rt);
 int						valid_data(t_rt *rt);
 int						pars_scene(char *str, t_rt *rt);
@@ -94,6 +102,7 @@ float					dot_product(float first_point[3],
 t_obj					*new_obj(t_obj **obj);
 
 void					trace_ray(t_rt *rt);
+void					hooks(int key, t_rt *rt);
 void					dell_all_obj(t_obj **obj);
 void					print_all(t_obj *obj, t_obj *light);
 void					normal_intersection_dot(t_ray *ray, t_obj *cam);

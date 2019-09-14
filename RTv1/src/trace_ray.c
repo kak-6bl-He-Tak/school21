@@ -6,13 +6,13 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/31 16:44:33 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/13 18:24:35 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/14 12:48:21 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		object_patrol(t_rt *rt, t_ray *ray)
+static void		object_patrol(t_rt *rt, t_ray *ray)
 {
 	t_obj	*cam;
 	t_obj	*obj;
@@ -38,7 +38,7 @@ void		object_patrol(t_rt *rt, t_ray *ray)
 	}
 }
 
-int			colr_mod(int clr, float i)
+static int		colr_mod(int clr, float i)
 {
 	int	rgb[3];
 
@@ -50,7 +50,7 @@ int			colr_mod(int clr, float i)
 	return (((rgb[0] * 256) + rgb[1]) * 256 + rgb[2]);
 }
 
-void		zaryazhay(t_ray *ray, t_rt *rt, int x, int y)
+void			zaryazhay(t_ray *ray, t_rt *rt, int x, int y)
 {
 	float	*angle;
 
@@ -69,28 +69,49 @@ void		zaryazhay(t_ray *ray, t_rt *rt, int x, int y)
 	ray->obj = 0;
 }
 
-void		trace_ray(t_rt *rt)
+static void		rays_threads(t_pthread_ray *rays)
 {
-	int		x;
-	int		y;
-	t_ray	ray;
-	float	i;
+	t_ray			ray;
+	t_rt			*rt;
+	int				x;
+	int				maxy;
+	float			i;
 
-	y = -1;
-	while (++y < H)
+	rt = rays->rt;
+	maxy = rays->y + H / 5 + 1;
+	while (++rays->y < maxy)
 	{
 		x = -1;
 		while (++x < W)
 		{
-			zaryazhay(&ray, rt, x, y);
+			zaryazhay(&ray, rt, x, rays->y);
 			object_patrol(rt, &ray);
 			if (ray.obj)
 			{
 				i = diffuse_reflection(rt, &ray);
 				ray.clr = colr_mod(ray.clr, i);
 			}
-			rt->img_data[y * W + x] = ray.clr;
+			rt->img_data[rays->y * W + x] = ray.clr;
 		}
 	}
+}
+
+void			trace_ray(t_rt *rt)
+{
+	int				i;
+	pthread_t		threads[5];
+	t_pthread_ray	rays[5];
+
+	i = -1;
+	while (++i < 5)
+	{
+		rays[i].rt = rt;
+		rays[i].y = H / 5 * i - 1;
+		pthread_create(&threads[i], 0, (void *)rays_threads, (void *)&rays[i]);
+	}
+	i = -1;
+	while (++i < 5)
+		pthread_join(threads[i], 0);
+	mlx_clear_window(rt->mlx_ptr, rt->win_ptr);
 	mlx_put_image_to_window(rt->mlx_ptr, rt->win_ptr, rt->img_ptr, 0, 0);
 }
