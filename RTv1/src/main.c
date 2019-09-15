@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/15 12:22:49 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 12:35:20 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void					start_mlx(t_rt *rt)
 		!(rt->img_data = (int *)mlx_get_data_addr(rt->img_ptr, &bpp,
 									&size_line, &end)))
 	{
-		perror("Ошибка инициализации MLX");
+		perror("Error MLX");
 		ft_exit(rt);
 	}
 }
