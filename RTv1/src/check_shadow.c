@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/02 19:10:54 by udraugr-          #+#    #+#             */
-/*   Updated: 2019/09/12 19:55:48 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 11:26:06 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,28 @@ static int		check_roots(t_light *light, float roots[2], t_ray ray_p_light)
 	return (SUCCESS);
 }
 
+int				calc_intersetion(t_obj *cam, t_obj *current_obj,
+									t_ray *ray_p_light, float roots[2])
+{
+	int			result;
+
+	result = FAIL;
+	if (current_obj->type == SPHERE)
+		result = clr_sphere(cam, current_obj, ray_p_light, roots);
+	else if (current_obj->type == PLANE)
+		result = clr_plane(cam, current_obj, ray_p_light, roots);
+	else if (current_obj->type == CYLINDER)
+		result = clr_cylinder(cam, current_obj, ray_p_light, roots);
+	else if (current_obj->type == CONE)
+		result = clr_cone(cam, current_obj, ray_p_light, roots);
+	return (result);
+}
+
 int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 {
 	t_obj		cam;
 	t_ray		ray_p_light;
 	t_obj		*current_obj;
-	int			result;
 	float		roots[2];
 
 	current_obj = rt->obj;
@@ -59,19 +75,11 @@ int				check_shadow(t_rt *rt, t_ray *ray, t_light *light)
 	fill_new_cam_and_new_ray(&cam, &ray_p_light, ray, light);
 	while (current_obj->next)
 	{
-		result = 1;
 		current_obj = current_obj->next;
 		if (current_obj != ray->obj)
 		{
-			if (current_obj->type == SPHERE)
-				result = clr_sphere(&cam, current_obj, &ray_p_light, roots);
-			else if (current_obj->type == PLANE)
-				result = clr_plane(&cam, current_obj, &ray_p_light, roots);
-			else if (current_obj->type == CYLINDER)
-				result = clr_cylinder(&cam, current_obj, &ray_p_light, roots);
-			else if (current_obj->type == CONE)
-				result = clr_cone(&cam, current_obj, &ray_p_light, roots);
-			if (result == SUCCESS &&
+			if (calc_intersetion(&cam, current_obj,
+								&ray_p_light, roots) == SUCCESS &&
 					check_roots(light, roots, ray_p_light) == FAIL)
 				return (FAIL);
 		}

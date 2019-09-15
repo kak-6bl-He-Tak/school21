@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/14 12:33:41 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 12:17:24 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ typedef struct			s_ray
 
 typedef struct			s_pthread_ray
 {
-		int				y;
-		t_rt			*rt;
+	int					y;
+	t_rt				*rt;
 }						t_pthread_ray;
-
 
 int						ft_exit(t_rt *rt);
 int						valid_data(t_rt *rt);
+int						open_file(char *str);
 int						pars_scene(char *str, t_rt *rt);
 int						set_cone(t_obj **obj, char *gnl);
 int						set_plane(t_obj **obj, char *gnl);

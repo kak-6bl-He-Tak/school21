@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:20:17 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/14 12:17:12 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 12:22:49 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ static int				cho_kavo(char *argv, t_rt *rt)
 {
 	if (pars_scene(argv, rt) == 0)
 	{
-		ft_putendl("Unknow shape");
+		ft_putendl("Invalid scene");
 		return (0);
 	}
 	print_all(rt->obj, rt->light);
 	if (valid_data(rt) == 0)
 	{
-		ft_putendl("Invalid data");
+		ft_putendl("Invalid scene");
 		return (0);
 	}
 	return (1);

@@ -6,25 +6,11 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/15 10:01:54 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 12:23:36 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-
-static int			open_file(char *str)
-{
-	int			fd;
-	char		a[1];
-
-	fd = open(str, O_RDONLY);
-	if (read(fd, a, 0) == -1)
-	{
-		fd = 0;
-		perror("Open file");
-	}
-	return (fd);
-}
 
 int					set_camera(t_obj **obj, char *gnl)
 {
@@ -100,17 +86,8 @@ static int			ft_koroche(char *gnl, t_rt *rt, t_obj *tmp)
 	return (1);
 }
 
-int					pars_scene(char *str, t_rt *rt)
+static int			ft_eshe_koroche(int fd, char *gnl, t_rt *rt, t_obj *tmp)
 {
-	int		fd;
-	char	*gnl;
-	t_obj	*tmp;
-
-	tmp = 0;
-	if (!(fd = open_file(str)))
-		return (fd);
-	if (!new_obj(&rt->obj))
-		return (0);
 	while (get_next_line(fd, &gnl))
 	{
 		if (gnl[0] == '#')
@@ -126,5 +103,24 @@ int					pars_scene(char *str, t_rt *rt)
 			return (0);
 		}
 	}
+	return (1);
+}
+
+int					pars_scene(char *str, t_rt *rt)
+{
+	int		fd;
+	char	*gnl;
+	t_obj	*tmp;
+
+	tmp = 0;
+	gnl = 0;
+	if (!(fd = open_file(str)))
+		return (fd);
+	if (!new_obj(&rt->obj))
+		return (0);
+	if (!ft_eshe_koroche(fd, gnl, rt, tmp))
+		return (0);
+	if (rt->light == 0 || rt->obj->shape == 0)
+		return (0);
 	return (1);
 }
