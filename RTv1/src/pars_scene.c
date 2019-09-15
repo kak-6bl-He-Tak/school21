@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 13:49:46 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/13 20:33:41 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 10:01:54 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ static int			set_shapes(char *gnl, t_rt *rt, t_obj *tmp)
 
 static int			ft_koroche(char *gnl, t_rt *rt, t_obj *tmp)
 {
+	char	*save;
+
+	save = &gnl[11];
 	if (ft_strncmp(gnl, "camera    :", 11) &&
 		ft_strncmp(gnl, "sphere    :", 11) &&
 			ft_strncmp(gnl, "plane     :", 11) &&
@@ -80,6 +83,13 @@ static int			ft_koroche(char *gnl, t_rt *rt, t_obj *tmp)
 					ft_strncmp(gnl, "cone      :", 11) &&
 						ft_strncmp(gnl, "light     :", 11))
 		return (0);
+	while (*save)
+	{
+		if (!ft_isdigit(*save) && *save != ' ' && *save != '-'
+			&& *save != ':' && *save != ',' && *save != '.')
+			return (0);
+		save++;
+	}
 	if (!ft_strncmp(gnl, "light     :", 11))
 	{
 		if (!(tmp = new_obj(&rt->light)))
