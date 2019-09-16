@@ -11,6 +11,6 @@ sphere    : 0,0,20 : 5 : 16700000
 #light    : type : intensive : dot(1) or vector(2)
 light     : 0 : 0.1
 #light     : 1 : 0.6 : 2,1,0
-#light     : 1 : 0.6 : 0,0,-1
+light     : 1 : 0.6 : 0,0,-1
 #light     : 2 : 0.2 : -1,-1,-1
 #light     : 2 : 0.4 : 0,1,0

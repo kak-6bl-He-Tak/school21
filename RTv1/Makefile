@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/15 12:17:41 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/09/15 12:46:40 by udraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ C_FILES= \
 			clr_cone.c\
 			open_file.c\
 			trace_ray.c\
-			print_all.c\
 			clr_plane.c\
 			clr_sphere.c\
 			pars_scene.c\

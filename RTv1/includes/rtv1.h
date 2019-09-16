@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/30 10:06:18 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/09/15 12:17:24 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/09/15 12:46:29 by udraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ t_obj					*new_obj(t_obj **obj);
 void					trace_ray(t_rt *rt);
 void					hooks(int key, t_rt *rt);
 void					dell_all_obj(t_obj **obj);
-void					print_all(t_obj *obj, t_obj *light);
 void					normal_intersection_dot(t_ray *ray, t_obj *cam);
 void					nearest_object(t_ray *ray, float root,
 												t_obj *obj, t_obj *cam);
