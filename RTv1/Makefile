@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/09/15 12:46:40 by udraugr-         ###   ########.fr        #
+#    Updated: 2019/09/22 15:32:23 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ WWW = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(LIBFT_A) $(OBJ_DIR) $(OBJ)
-	gcc $(WWW) $(OBJ) $(LIBFT_A) $(INCLUD) $(MLX) -o $(NAME)
+	gcc $(WWW) $(OBJ) $(LIBFT_A) $(INCLUD) $(MLX) -o $(NAME) -framework OpenCL
 
 $(LIBFT_A):
 	make -C libft

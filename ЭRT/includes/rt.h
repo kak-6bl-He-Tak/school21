@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:59:53 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/23 22:16:02 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/24 20:51:53 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,15 @@ t_tuple				add_tuples(t_tuple a, t_tuple b);
 t_tuple				cross_product(t_tuple a, t_tuple b);
 t_tuple				subtract_tuples(t_tuple a, t_tuple b);
 t_tuple				multiply_tuple_with_scal(t_tuple a, float b);
+t_tuple				multiply_matrix_with_tuple(t_matrix *a, t_tuple b);
 
 t_tuple				new_point(float x, float y, float z);
 t_tuple				new_vector(float x, float y, float z);
 
-
+t_matrix			*multiply_identity_matrix(t_matrix *a, t_matrix *dest);
+t_matrix			*multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *dest);
 t_matrix			*new_matrix(int size);
+
 void				dell_matrix(t_matrix *mat);
 
 void				set_pixel_sdl(SDL_Surface *surface, int x, int y, Uint32 pixel);

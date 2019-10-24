@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:38:39 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/23 22:19:41 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/24 21:31:46 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,91 @@ int			equal_matrix(t_matrix *a, t_matrix *b)
 		x = -1;
 		while (++x < a->size)
 		{
-			printf("%f - %f", a->matrix[y][x], b->matrix[y][x]);
 			if (!equal_custom(a->matrix[y][x], b->matrix[y][x]))
-			{
-				printf("tyt");
 				return(0);
-			}
 		}
-		printf(" | ");
 	}
 	return (1);
 }
+
+t_matrix	*multiply_matrix(t_matrix *a, t_matrix *b, t_matrix *dest)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < 4)
+	{
+		x = -1;
+		while (++x < 4)
+		{
+			dest->matrix[y][x] =
+				a->matrix[y][0] * b->matrix[0][x] +
+				a->matrix[y][1] * b->matrix[1][x] +
+				a->matrix[y][2] * b->matrix[2][x] +
+				a->matrix[y][3] * b->matrix[3][x];
+		}
+	}
+	return (dest);
+}
+
+t_tuple		multiply_matrix_with_tuple(t_matrix *a, t_tuple b)
+{
+	t_tuple	res;
+	float	**mat;
+
+	mat = a->matrix;
+	res.x = b.x * mat[0][0] + b.y * mat[0][1] + b.z * mat[0][2] + b.w * mat[0][3];
+	res.y = b.x * mat[1][0] + b.y * mat[1][1] + b.z * mat[1][2] + b.w * mat[1][3];
+	res.z = b.x * mat[2][0] + b.y * mat[2][1] + b.z * mat[2][2] + b.w * mat[2][3];
+	res.w = b.x * mat[3][0] + b.y * mat[3][1] + b.z * mat[3][2] + b.w * mat[3][3];
+	return (res);
+}
+
+void		make_identity_matrix(float **mat, int size)
+{
+	int	y;
+	int	x;
+
+	y = -1;
+	while (++y < size)
+	{
+		x = -1;
+		while (++x < size)
+		{
+			if (y == x)
+				mat[y][x] = 1.0;
+			else
+				mat[y][x] = 0.0;
+		}
+	}
+}
+
+
+void		aza(float **a)
+{
+	printf("%f", a[0][3]);
+}
+
+t_matrix	*multiply_identity_matrix(t_matrix *a, t_matrix *dest)
+{
+	float		id_mat[4][4] = {
+		{1.0, 2.0, 3.0, 1.0},
+		{2.0, 3.0, 4.0, 1.0},
+		{3.0, 4.0, 5.0, 1.0},
+		{4.0, 5.0, 6.0, 1.0}};
+	// t_matrix	identity;
+	float **azaz;
+	float *b;
+
+	b = id_mat[0];
+	azaz = &b;
+	a = 0;
+	aza(azaz);
+	// make_identity_matrix((float **)id_mat, 4);
+	// identity.matrix = (float **)id_mat;
+	// printf("%f", identity.matrix[0][0]);
+	// dest = multiply_matrix(a, &identity, dest);
+	return(dest);
+}
+
