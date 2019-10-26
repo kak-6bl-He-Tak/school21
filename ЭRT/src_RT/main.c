@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:50:02 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/24 20:49:37 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/26 17:23:07 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,13 @@ void	print_matrix(t_matrix *a)
 		}
 		printf("\n");
 	}
-		printf("___________");
+		printf("___________\n");
 
 }
 
 void	print_tuples(t_tuple a)
 {
-	printf("x = %f, y = %f, z = %f, w = %f", a.x, a.y, a.z, a.w);
+	printf("x = %f, y = %f, z = %f, w = %f\n", a.x, a.y, a.z, a.w);
 }
 
 
@@ -98,31 +98,40 @@ int		main(/*int argc, char **argv*/)
 
 	t_matrix *a = new_matrix(4);
 	a->matrix [0][0] = 1.0;
-	a->matrix [0][1] = 2.0;
-	a->matrix [0][2] = 3.0;
-	a->matrix [0][3] = 4.0;
+	a->matrix [0][1] = 0.0;
+	a->matrix [0][2] = 0.0;
+	a->matrix [0][3] = 0.0;
 
-	a->matrix [1][0] = 2.0;
-	a->matrix [1][1] = 4.0;
-	a->matrix [1][2] = 4.0;
-	a->matrix [1][3] = 2.0;
+	a->matrix [1][0] = 0.0;
+	a->matrix [1][1] = 1.0;
+	a->matrix [1][2] = 0.0;
+	a->matrix [1][3] = 0.0;
 
-	a->matrix [2][0] = 8.0;
-	a->matrix [2][1] = 6.0;
-	a->matrix [2][2] = 4.0;
-	a->matrix [2][3] = 1.0;
+	a->matrix [2][0] = 0.0;
+	a->matrix [2][1] = 0.0;
+	a->matrix [2][2] = 1.0;
+	a->matrix [2][3] = 0.0;
 
-	a->matrix [3][0] = 0.0;
-	a->matrix [3][1] = 0.0;
-	a->matrix [3][2] = 0.0;
+	a->matrix [3][0] = 5.0;
+	a->matrix [3][1] = -3.0;
+	a->matrix [3][2] = 2.0;
 	a->matrix [3][3] = 1.0;
 
-	// t_tuple b = new_point(1.0, 2.0, 3.0);
-	// t_tuple aza = multiply_matrix_with_tuple(a, b);
+	t_matrix *b = new_matrix(4);
+	b = inverse_matrix(a, b);
+	b = transposing_matrix(b);
+	t_tuple v;
+	v = new_vector(1,2,3);
+	v = multiply_matrix_with_tuple(a, v);
+	print_tuples(v);
+	t_tuple p;
+	p = new_point(-3,4,5);
+	p = multiply_matrix_with_tuple(b, p);
+	print_tuples(p);
 
-	t_matrix *c = new_matrix(4);
-	c = multiply_identity_matrix(a, c);
-	// print_matrix(c);
+
+	// print_matrix(d);
+
 
 
 	while (1)
