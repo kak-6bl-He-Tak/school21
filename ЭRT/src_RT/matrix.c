@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:38:39 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/27 12:47:17 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:17:35 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,3 +353,75 @@ t_matrix	*get_scale_matrix(t_tuple a)
 	res->matrix[3][3] = 1.0;
 	return(res);
 }
+
+t_matrix	*get_rotate_matrix_around_ox(float angle)
+{
+	float		rad_angle;
+	t_matrix	*rot_mat;
+
+	rot_mat = new_matrix(4);
+	rad_angle = deg_to_rad(angle);
+	identity_matrix(rot_mat);
+	rot_mat->matrix[1][1] = cos(rad_angle);
+	rot_mat->matrix[1][2] = -1.0 * sin(rad_angle);
+	rot_mat->matrix[2][1] = sin(rad_angle);
+	rot_mat->matrix[2][2] = cos(rad_angle);
+	return(rot_mat);
+}
+
+t_matrix	*get_rotate_matrix_around_oy(float angle)
+{
+	float		rad_angle;
+	t_matrix	*rot_mat;
+
+	rot_mat = new_matrix(4);
+	rad_angle = deg_to_rad(angle);
+	identity_matrix(rot_mat);
+	rot_mat->matrix[0][0] = cos(rad_angle);
+	rot_mat->matrix[0][2] = sin(rad_angle);
+	rot_mat->matrix[2][0] = -1.0 * sin(rad_angle);
+	rot_mat->matrix[2][2] = cos(rad_angle);
+	return(rot_mat);
+}
+
+t_matrix	*get_rotate_matrix_around_oz(float angle)
+{
+	float		rad_angle;
+	t_matrix	*rot_mat;
+
+	rot_mat = new_matrix(4);
+	rad_angle = deg_to_rad(angle);
+	identity_matrix(rot_mat);
+	rot_mat->matrix[0][0] = cos(rad_angle);
+	rot_mat->matrix[0][1] = -1.0 * sin(rad_angle);
+	rot_mat->matrix[1][0] = sin(rad_angle);
+	rot_mat->matrix[1][1] = cos(rad_angle);
+	return(rot_mat);
+}
+
+
+t_matrix	*get_shearing_matrix(float shear[6])
+{
+	t_matrix	*mat;
+
+	mat = new_matrix(4);
+	identity_matrix(mat);
+	mat->matrix[0][1] = shear[0];
+	mat->matrix[0][2] = shear[1];
+	mat->matrix[1][0] = shear[2];
+	mat->matrix[1][2] = shear[3];
+	mat->matrix[2][0] = shear[4];
+	mat->matrix[2][1] = shear[5];
+	return(mat);
+}
+
+
+
+
+
+
+
+
+
+
+

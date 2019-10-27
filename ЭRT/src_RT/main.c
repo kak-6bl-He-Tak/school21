@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:50:02 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/27 12:59:43 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:50:00 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,31 +97,44 @@ int		main(/*int argc, char **argv*/)
 	clear_surface(rt.surfase_window, rt.surfase_window->w, rt.surfase_window->h);
 
 
-
-
-	t_tuple s = new_vector(-1, 1, 1);
-	print_tuples(s);
-	t_tuple p;
-	p = new_point(-4,6,8);
-	print_tuples(p);
-	p = rvrs_scale_tuple(p, s);
-	print_tuples(p);
-
-// ​ 	​Scenario​: A scaling matrix applied to a point
-// ​ 	  ​Given​ transform ← scaling(2, 3, 4)
-// ​ 	    ​And​ p ← point(-4, 6, 8)
-// ​ 	   ​Then​ transform * p = point(-8, 18, 32)
-
-	while (1)
+	t_ray	ray;
+	ray = new_ray(new_point(0,0,5), new_vector(0,0,1));
+	t_shape *s;
+	s = new_shape();
+	get_new_sphere(s);
+	t_intersect i;
+	i = intersect(s, ray);
+	if (i.shape != 0)
 	{
-		if (SDL_PollEvent(&(rt.event)))
-		{
-			if (SDL_QUIT == rt.event.type)
-				break ;
-			if (SDLK_ESCAPE == rt.event.key.keysym.sym)
-				break ;
-			SDL_UpdateWindowSurface(rt.window);
-		}
+		printf("%p, xs[0] = %f, xs[1] = %f", i.shape, i.xs[0], i.xs[1]);
 	}
+
+
 	return(0);
+// ​ 	​Scenario​: Computing a point from a distance
+// ​ 	  ​Given​ r ← ray(point(2, 3, 4), vector(1, 0, 0))
+// ​ 	  ​Then​ position(r, 0) = point(2, 3, 4)
+// ​ 	    ​And​ position(r, 1) = point(3, 3, 4)
+// ​ 	    ​And​ position(r, -1) = point(1, 3, 4)
+// ​ 	    ​And​ position(r, 2.5) = point(4.5, 3, 4)
+
+	// while (1)
+	// {
+	// 	if (SDL_PollEvent(&(rt.event)))
+	// 	{
+	// 		if (SDL_QUIT == rt.event.type)
+	// 			break ;
+	// 		if (SDLK_ESCAPE == rt.event.key.keysym.sym)
+	// 			break ;
+	// 		SDL_UpdateWindowSurface(rt.window);
+	// 	}
+	// }
 }
+
+//  	​Scenario​: A sphere is behind a ray
+// ​ 	  ​Given​ r ← ray(point(0, 0, 5), vector(0, 0, 1))
+// ​ 	    ​And​ s ← sphere()
+// ​ 	  ​When​ xs ← intersect(s, r)
+// ​ 	  ​Then​ xs.count = 2
+// ​ 	    ​And​ xs[0] = -6.0
+// ​ 	    ​And​ xs[1] = -4.0

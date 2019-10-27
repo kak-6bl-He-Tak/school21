@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:18:08 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/27 12:57:46 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 14:32:45 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,56 @@ t_tuple		rvrs_scale_tuple(t_tuple src, t_tuple scale)
 	res = multiply_matrix_with_tuple(inv_mat, src);
 	dell_matrix(mat_scale);
 	dell_matrix(inv_mat);
+	return(res);
+}
+
+t_tuple		rotate_tuple(t_tuple src, t_tuple rot)
+{
+	t_tuple		res;
+	t_matrix	*mat_rot;
+
+	mat_rot = get_rotate_matrix_around_ox(rot.x);
+	res = multiply_matrix_with_tuple(mat_rot, src);
+	dell_matrix(mat_rot);
+	mat_rot = get_rotate_matrix_around_oy(rot.y);
+	res = multiply_matrix_with_tuple(mat_rot, res);
+	dell_matrix(mat_rot);
+	mat_rot = get_rotate_matrix_around_oz(rot.z);
+	res = multiply_matrix_with_tuple(mat_rot, res);
+	dell_matrix(mat_rot);
+	return(res);
+}
+
+t_tuple		rvrs_rotate_tuple(t_tuple src, t_tuple rot)
+{
+	t_tuple		res;
+	t_matrix	*mat_rot;
+	t_matrix	*mat_inv;
+
+	mat_inv = new_matrix(4);
+	mat_rot = get_rotate_matrix_around_ox(rot.x);
+	inverse_matrix(mat_rot, mat_inv);
+	res = multiply_matrix_with_tuple(mat_inv, src);
+	dell_matrix(mat_rot);
+	mat_rot = get_rotate_matrix_around_oy(rot.y);
+	inverse_matrix(mat_rot, mat_inv);
+	res = multiply_matrix_with_tuple(mat_inv, res);
+	dell_matrix(mat_rot);
+	mat_rot = get_rotate_matrix_around_oz(rot.z);
+	inverse_matrix(mat_rot, mat_inv);
+	res = multiply_matrix_with_tuple(mat_inv, res);
+	dell_matrix(mat_rot);
+	dell_matrix(mat_inv);
+	return(res);
+}
+
+t_tuple	shearing_tuple(t_tuple src, float shear[6])
+{
+	t_tuple		res;
+	t_matrix	*mat;
+
+	mat = get_shearing_matrix(shear);
+	res = multiply_matrix_with_tuple(mat, src);
+	dell_matrix(mat);
 	return(res);
 }

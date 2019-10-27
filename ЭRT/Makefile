@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/10/27 12:28:49 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/10/27 18:04:16 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,12 @@ SRC_DIR=./src_RT
 OBJ_DIR=./objects
 
 C_FILES= \
+			rays.c\
 			main.c\
 			matrix.c\
+			shapes.c\
 			tuples.c\
+			intersect.c\
 			custom_math.c\
 			actions_with_pixels.c\
 

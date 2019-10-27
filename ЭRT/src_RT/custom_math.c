@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:24:53 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/23 22:22:16 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 17:00:20 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,3 +138,24 @@ unsigned int	rgb_to_ui(int red, int green, int blue)
 		return ((red & 0xff) << 16) + ((green & 0xff) << 8) + (blue & 0xff);
 	return (0);
 }
+
+float			deg_to_rad(float deg)
+{
+	return((deg / 180.0) * M_PI);
+}
+
+float			discriminant(t_tuple ray_der, t_tuple shape_to_ray)
+{
+	float	a;
+	float	b;
+	float	c;
+	float	res;
+
+	a = dot_product(ray_der, ray_der);
+	b = 2.0 * dot_product(ray_der, shape_to_ray);
+	c = dot_product(shape_to_ray, shape_to_ray) - 1;
+	res = pow(b, 2) - 4 * a * c;
+	return(res);
+}
+
+

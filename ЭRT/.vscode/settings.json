@@ -1,6 +1,9 @@
 {
 	"files.associations": {
 		"ios": "c",
-		"algorithm": "c"
+		"algorithm": "c",
+		"rt.h": "c",
+		"complex": "c",
+		"cmath": "c"
 	}
 }
