@@ -6,7 +6,7 @@
 #    By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/30 10:04:46 by dtreutel          #+#    #+#              #
-#    Updated: 2019/10/23 21:57:22 by dtreutel         ###   ########.fr        #
+#    Updated: 2019/10/27 12:28:49 by dtreutel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ $(LIBFT_A):
 $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ./includes/rtv1.h
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c ./includes/rt.h
 	gcc $(INCLUD) $(WWW) -o $@ -c $<
 
 clean:

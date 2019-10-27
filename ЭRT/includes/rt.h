@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:59:53 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/26 16:22:24 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 13:00:27 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int					equal_matrix(t_matrix *a, t_matrix *b);
 int					valid_invertion_matrix(t_matrix *a);
 
 
-
 unsigned int		rgb_to_ui(int red, int green, int blue);
 
 
@@ -95,16 +94,23 @@ float				cofactor_minor_matrix(t_matrix *a, int del_y, int del_x);
 
 t_tuple				norm_vector(t_tuple a);
 t_tuple				add_tuples(t_tuple a, t_tuple b);
+t_tuple				move_tuple(t_tuple src, t_tuple move);
+t_tuple				scale_tuple(t_tuple src, t_tuple scale);
+t_tuple				rvrs_scale_tuple(t_tuple src, t_tuple scale);
+t_tuple				rvrs_move_tuple(t_tuple src, t_tuple move);
 t_tuple				cross_product(t_tuple a, t_tuple b);
 t_tuple				subtract_tuples(t_tuple a, t_tuple b);
 t_tuple				multiply_tuple_with_scal(t_tuple a, float b);
 t_tuple				multiply_matrix_with_tuple(t_matrix *a, t_tuple b);
 t_tuple				multiply_identity_matrix_with_tuple(t_tuple b);
 
+
 t_tuple				new_point(float x, float y, float z);
 t_tuple				new_vector(float x, float y, float z);
 
 t_matrix			*new_matrix(int size);
+t_matrix			*get_move_matrix(t_tuple a);
+t_matrix			*get_scale_matrix(t_tuple a);
 t_matrix			*transposing_matrix(t_matrix *a);
 t_matrix			*inverse_matrix(t_matrix *a, t_matrix *dest);
 t_matrix			*multiply_identity_matrix(t_matrix *a, t_matrix *dest);
@@ -115,98 +121,7 @@ void				dell_matrix(t_matrix *mat);
 
 void				set_pixel_sdl(SDL_Surface *surface, int x, int y, Uint32 pixel);
 void				clear_surface(SDL_Surface *surface, int x, int y);
+void				identity_matrix(t_matrix *a);
 
 #endif
 
-
-// typedef struct			s_obj
-// {
-// 	char				type;
-// 	void				*shape;
-// 	int					clr;
-
-// 	struct s_obj		*next;
-// }						t_obj;
-
-// typedef struct			s_rt
-// {
-// 	SDL_Window			*win_ptr;
-// 	SDL_Surface			*sur_ptr;
-// 	SDL_Event			event;
-
-// 	int					*img_data;
-// 	t_obj				*obj;
-// 	t_obj				*light;
-// 	int					i;
-// }						t_rt;
-
-// typedef struct			s_ray
-// {
-// 	float				d[3];
-// 	float				t;
-// 	float				p[3];
-// 	int					clr;
-// 	float				normal[3];
-// 	t_obj				*obj;
-// 	float				min_t;
-// }						t_ray;
-
-// typedef struct			s_pthread_ray
-// {
-// 	int					y;
-// 	t_rt				*rt;
-// }						t_pthread_ray;
-
-// int						ft_exit(t_rt *rt);
-// int						valid_data(t_rt *rt);
-// int						open_file(char *str);
-// int						pars_scene(char *str, t_rt *rt);
-// int						set_cone(t_obj **obj, char *gnl);
-// int						set_plane(t_obj **obj, char *gnl);
-// int						set_light(t_obj **obj, char *gnl);
-// int						set_sphere(t_obj **obj, char *gnl);
-// int						set_cylinder(t_obj **obj, char *gnl);
-// int						get_next_line(const int fd, char **line);
-// int						check_shadow(t_rt *rt, t_ray *ray, t_light *light);
-// int						clr_sphere(t_obj *cam, t_obj *obj, t_ray *ray,
-// 															float roots[2]);
-// int						clr_cone(t_obj *cam, t_obj *current_obj, t_ray *ray,
-// 															float roots[2]);
-// int						clr_plane(t_obj *cam, t_obj *current_obj, t_ray *ray,
-// 															float roots[2]);
-// int						clr_cylinder(t_obj *cam, t_obj *current_obj,
-// 												t_ray *ray, float roots[2]);
-// int						roots_quadratic_equation(float a, float b, float c,
-// 												float roots[2]);
-
-// float					ft_atof(const char *str);
-// float					ft_scan_digit(char **str);
-// float					len_vector(float vector[3]);
-// float					diffuse_reflection(t_rt *rt, t_ray *ray);
-// float					dot_product(float first_point[3],
-// 									float second_point[3]);
-
-// t_obj					*new_obj(t_obj **obj);
-
-// void					trace_ray(t_rt *rt);
-// void					hooks(int key, t_rt *rt);
-// void					dell_all_obj(t_obj **obj);
-// void					normal_intersection_dot(t_ray *ray, t_obj *cam);
-// void					nearest_object(t_ray *ray, float root,
-// 												t_obj *obj, t_obj *cam);
-// void					nearest_objects(t_ray *ray, float roots[2],
-// 												t_obj *obj, t_obj *cam);
-// void					multiplication_point(float first_point[3], float k,
-// 											float destination[3]);
-// void					addition_point(float first_point[3],
-// 									float second_point[3],
-// 									float destination[3]);
-// void					subtraction_point(float first_point[3],
-// 										float second_point[3],
-// 										float destination[3]);
-// void					rotation_on_z(float vector[3], float angle,
-// 										float destination[3]);
-// void					rotation_on_x(float vector[3], float angle,
-// 										float destination[3]);
-// void					rotation_on_y(float vector[3], float angle,
-// 										float destination[3]);

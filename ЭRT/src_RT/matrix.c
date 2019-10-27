@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 21:38:39 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/26 16:19:09 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:47:17 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,4 +308,48 @@ t_matrix	*inverse_matrix(t_matrix *a, t_matrix *dest)
 		}
 	}
 	return(dest);
+}
+
+void		identity_matrix(t_matrix *a)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while(++y < a->size)
+	{
+		x = -1;
+		while(++x < a->size)
+		{
+			if (y == x)
+				a->matrix[y][x] = 1.0;
+			else
+				a->matrix[y][x] = 0.0;
+		}
+	}
+}
+
+
+t_matrix	*get_move_matrix(t_tuple a)
+{
+	t_matrix *res;
+
+	res = new_matrix(4);
+	identity_matrix(res);
+	res->matrix[0][3] = a.x;
+	res->matrix[1][3] = a.y;
+	res->matrix[2][3] = a.z;
+	return(res);
+}
+
+t_matrix	*get_scale_matrix(t_tuple a)
+{
+	t_matrix *res;
+
+	res = new_matrix(4);
+	res->matrix[0][0] = a.x;
+	res->matrix[1][1] = a.y;
+	res->matrix[2][2] = a.z;
+	res->matrix[3][3] = 1.0;
+	return(res);
 }

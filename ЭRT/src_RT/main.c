@@ -6,7 +6,7 @@
 /*   By: dtreutel <dtreutel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/19 12:50:02 by dtreutel          #+#    #+#             */
-/*   Updated: 2019/10/26 17:23:07 by dtreutel         ###   ########.fr       */
+/*   Updated: 2019/10/27 12:59:43 by dtreutel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,43 +96,21 @@ int		main(/*int argc, char **argv*/)
 	}
 	clear_surface(rt.surfase_window, rt.surfase_window->w, rt.surfase_window->h);
 
-	t_matrix *a = new_matrix(4);
-	a->matrix [0][0] = 1.0;
-	a->matrix [0][1] = 0.0;
-	a->matrix [0][2] = 0.0;
-	a->matrix [0][3] = 0.0;
 
-	a->matrix [1][0] = 0.0;
-	a->matrix [1][1] = 1.0;
-	a->matrix [1][2] = 0.0;
-	a->matrix [1][3] = 0.0;
 
-	a->matrix [2][0] = 0.0;
-	a->matrix [2][1] = 0.0;
-	a->matrix [2][2] = 1.0;
-	a->matrix [2][3] = 0.0;
 
-	a->matrix [3][0] = 5.0;
-	a->matrix [3][1] = -3.0;
-	a->matrix [3][2] = 2.0;
-	a->matrix [3][3] = 1.0;
-
-	t_matrix *b = new_matrix(4);
-	b = inverse_matrix(a, b);
-	b = transposing_matrix(b);
-	t_tuple v;
-	v = new_vector(1,2,3);
-	v = multiply_matrix_with_tuple(a, v);
-	print_tuples(v);
+	t_tuple s = new_vector(-1, 1, 1);
+	print_tuples(s);
 	t_tuple p;
-	p = new_point(-3,4,5);
-	p = multiply_matrix_with_tuple(b, p);
+	p = new_point(-4,6,8);
+	print_tuples(p);
+	p = rvrs_scale_tuple(p, s);
 	print_tuples(p);
 
-
-	// print_matrix(d);
-
-
+// ​ 	​Scenario​: A scaling matrix applied to a point
+// ​ 	  ​Given​ transform ← scaling(2, 3, 4)
+// ​ 	    ​And​ p ← point(-4, 6, 8)
+// ​ 	   ​Then​ transform * p = point(-8, 18, 32)
 
 	while (1)
 	{
